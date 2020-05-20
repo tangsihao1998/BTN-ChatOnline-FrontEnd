@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create ({
-    baseURL: 'https://chatonline-backend.herokuapp.com/api/v1/user',
+    baseURL: 'https://chatonline-backend.herokuapp.com/api/v1/',
     timeout: 1000,
 });
 

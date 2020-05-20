@@ -8,7 +8,6 @@ import selectors from './../../redux/selectors';
 class Profile extends Component {
   render() {
     const {currentUser} = this.props;
-    console.log("Profile -> render -> currentUser", currentUser)
     return (
         <React.Fragment>{
             currentUser ? 

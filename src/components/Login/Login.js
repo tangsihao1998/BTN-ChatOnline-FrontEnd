@@ -149,14 +149,14 @@ class Login extends Component {
             password: this.state.password,
             phone: this.state.phone,
         }
-        Axios.api.post('/register', user)
+        Axios.api.post('/user/register', user)
         .then(res => {
             const userlogin = {
                 email: res.data.email,
                 password: res.data.password,
             }
 
-            Axios.api.post('/login', userlogin)
+            Axios.api.post('/user/login', userlogin)
             .then(res => {
                 // Save Token to Local Storage And Send state for modal
                 const {token} = res.data;
@@ -182,7 +182,7 @@ class Login extends Component {
             email: this.state.email,
             password: this.state.password
         };
-        Axios.api.post('/login', user)
+        Axios.api.post('/user/login', user)
         .then(res => {
             // Save Token to Local Storage And Send state for modal
             const {token} = res.data;

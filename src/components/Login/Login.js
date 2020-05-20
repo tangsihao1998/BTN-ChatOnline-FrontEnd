@@ -11,7 +11,7 @@ import jwt_decode from 'jwt-decode';
 
 import ForgotPasswordForm from './../ForgotPasswordForm';
 
-// import LoginForm from './../LoginForm';
+import LoginForm from './../LoginForm';
 // import RegisterForm from './../RegisterForm';
 
 class Login extends Component {
@@ -254,7 +254,7 @@ class Login extends Component {
                 {/* ALL MODAL OF LOGIN FORM */}
                 {/* ______________________________________________________________________________________________________ */}
                 {/*  Login The Modal  */}
-                {/* <LoginForm 
+                <LoginForm 
                     currentUser={currentUser} 
                     loginshow={loginshow} 
                     handleLoginShow={this.handleLoginShow} 
@@ -264,7 +264,7 @@ class Login extends Component {
                     email={email}
                     password={password}
                     handleTextChange={this.handleTextChange}
-                /> */}
+                />
                 {/* ______________________________________________________________________________________________________ */}
 
                 {/*  Register The Modal  */}

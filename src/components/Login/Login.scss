@@ -50,6 +50,10 @@
         right: 25px;
         top: 50px;
         z-index:20;
+        .User__settings {
+            text-decoration: unset;
+            color: #4d4d4d;
+        }
         div{
             width:100%;
             height:36px;

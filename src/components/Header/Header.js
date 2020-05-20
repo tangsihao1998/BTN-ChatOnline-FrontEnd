@@ -17,7 +17,7 @@ class Header extends PureComponent {
           <div className="Header__link">VỀ CHÚNG TÔI</div>
           <div className="Header__link">LIÊN HỆ</div>
           {/* check IF Đăng Nhập or not */}
-          <Login />
+          <Login {...this.props}/>
         </header>
       </React.Fragment>
     )

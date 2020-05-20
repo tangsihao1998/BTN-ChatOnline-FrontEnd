@@ -14,6 +14,8 @@ import ForgotPasswordForm from './../ForgotPasswordForm';
 import LoginForm from './../LoginForm';
 import RegisterForm from './../RegisterForm';
 
+import { Link } from 'react-router-dom';
+
 class Login extends Component {
     // Constructor of Component
     constructor(props) {
@@ -203,6 +205,7 @@ class Login extends Component {
         localStorage.removeItem('jwtToken');
         Axios.setAuthToken(false);
         this.props.signOutUser();
+        this.props.history.push('/');
     }
 
     componentWillReceiveProps(nextProps) {
@@ -226,8 +229,6 @@ class Login extends Component {
     }
 
     render(){
-        console.log(this.props);
-
         // Declare Variables
         // Props
         const {currentUser} = this.props;
@@ -246,8 +247,8 @@ class Login extends Component {
                 <div className={`User-form ${currentUser && 'enable'}`}>
                     {currentUser && <img src={process.env.PUBLIC_URL + currentUser.image} class="userIMG" alt="user-images" onClick={this.HandleUserSetting}/>}
                     <div id={`Info${(infoshow && 'Show')|| '' }`} className="User-Info">
-                        <div>Account setting</div>
-                        <div onClick={this.handleLogoutEvent}>Logout</div>
+                        <div><Link to='/profile' className="User__settings">Account setting</Link></div>
+                        <div className="User__logout" onClick={this.handleLogoutEvent}>Logout</div>
                     </div>
                 </div>
 

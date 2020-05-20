@@ -1,3 +1,3 @@
-import Profile from './Header';
+import Profile from './Profile';
 
 export default Profile;

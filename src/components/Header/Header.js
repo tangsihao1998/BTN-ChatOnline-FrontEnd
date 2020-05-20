@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import './Header.scss';
 
 // import components
-// import Login from './../Login';
+import Login from './../Login';
 
 class Header extends PureComponent {
 
@@ -17,7 +17,7 @@ class Header extends PureComponent {
           <div className="Header__link">VỀ CHÚNG TÔI</div>
           <div className="Header__link">LIÊN HỆ</div>
           {/* check IF Đăng Nhập or not */}
-          {/* <Login /> */}
+          <Login />
         </header>
       </React.Fragment>
     )

@@ -1,11 +1,11 @@
 import axios from 'axios';
 
-export const api = axios.create ({
-    baseURL: 'http://localhost:4000/api/',
+const api = axios.create ({
+    baseURL: 'https://chatonline-backend.herokuapp.com/api/v1/user',
     timeout: 1000,
 });
 
-export const setAuthToken = (token) => {
+const setAuthToken = (token) => {
     if(token) {
         api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
     }
@@ -14,4 +14,8 @@ export const setAuthToken = (token) => {
     }
 }
 
+export default {
+    api,
+    setAuthToken
+}
 // setAuthToken;

@@ -3,8 +3,8 @@ import React, { PureComponent } from 'react';
 import "./HomePage.scss";
 
 // import components
-// import Header from './../../components/Header';
-// import Footer from './../../components/Footer';
+import Header from './../../components/Header';
+import Footer from './../../components/Footer';
 // // import Router
 // import { Link } from 'react-router-dom';
 
@@ -13,10 +13,10 @@ class HomePage extends PureComponent {
     return (
       <div className="HomePage">
         {/* HEADER */}
-        {/* <Header {...this.props} /> */}
+        <Header {...this.props} />
         
         {/* FOOTER */}
-        {/* <Footer {...this.props}/> */}
+        <Footer {...this.props}/>
       </div>
     )
   }

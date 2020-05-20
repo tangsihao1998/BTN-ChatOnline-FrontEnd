@@ -1,0 +1,31 @@
+.HomePage__Header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 100%;
+
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+
+  background-color: #faedd0;
+
+  .Header__Logo {
+    height: 100%;
+    width: 20%;
+    max-width: 150px;
+    min-width: 40px;
+  }
+  .Header__link {
+    margin: 10px;
+
+    color: #fa897b;
+
+    cursor: pointer;
+    &:hover{
+      font-weight: bold;
+      opacity: 1;
+    }
+  }
+}

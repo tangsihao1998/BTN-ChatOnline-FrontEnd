@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-// import HomePage from './pages/HomePage';
+import HomePage from './pages/HomePage';
 
 import { BrowserRouter as Router,Route,Switch }  from 'react-router-dom'
 import { withRouter } from 'react-router'
@@ -27,7 +27,7 @@ class App extends React.Component{
         <div className="App">
           <Scroll>
             <Switch>
-              {/* <Route exact path='/' component={HomePage} /> */}
+              <Route exact path='/' component={HomePage} />
             </Switch>
           </Scroll>
         </div>

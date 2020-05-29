@@ -20,10 +20,16 @@ class ChatWindow extends Component {
 
 		return (
 			<div>
-				<button onClick={() => sendMessage({ type: 'text', content: 'Hello' })}>Send test msg</button>
+				<button onClick={() => sendMessage({ type: 'text', content: 'Hello' })}>
+					Send test msg
+				</button>
 				<div>
 					Messages:
-					{messages ? messages.map((message, i) => <div key={i}>{message.content}</div>) : <div>Loading...</div>}
+					{messages ? (
+						messages.map((message, i) => <div key={i}>{message.content}</div>)
+					) : (
+						<div>Loading...</div>
+					)}
 				</div>
 			</div>
 		);

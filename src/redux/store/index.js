@@ -2,7 +2,11 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 
 // Firebase
-import { createFirestoreInstance, getFirestore, reduxFirestore } from 'redux-firestore';
+import {
+	createFirestoreInstance,
+	getFirestore,
+	reduxFirestore,
+} from 'redux-firestore';
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/database';
@@ -35,7 +39,10 @@ firebase.initializeApp(firebaseConfig);
 firebase.firestore();
 
 // Create store with reducers and initial state
-const store = createStore(rootReducer, compose(reduxFirestore(firebase, rfConfig), applyMiddleware(...middlewares)));
+const store = createStore(
+	rootReducer,
+	compose(reduxFirestore(firebase, rfConfig), applyMiddleware(...middlewares))
+);
 
 const rfProps = {
 	firebase,

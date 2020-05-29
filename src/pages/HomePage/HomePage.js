@@ -6,7 +6,6 @@ import './HomePage.scss';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import Profile from '../../components/Profile';
-import ChatWindow from '../../components/ChatWindow';
 
 // // import Router
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';

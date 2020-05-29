@@ -10,7 +10,6 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import actions from './redux/actions';
-import selectors from './redux/selectors';
 import jwt_decode from 'jwt-decode';
 
 // Scroll To Top Component

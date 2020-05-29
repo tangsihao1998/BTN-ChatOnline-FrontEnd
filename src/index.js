@@ -7,16 +7,18 @@ import './index.css';
 
 import App from './App';
 
-// Redux 
+// Redux
 import { Provider } from 'react-redux';
-import { store } from './redux/store';
-
+import { store, rfProps } from './redux/store';
+import { ReactReduxFirebaseProvider } from 'react-redux-firebase';
 
 ReactDOM.render(
-  <Provider store={store}> 
-    <App />
-  </Provider>
-, document.getElementById('root')
+	<Provider store={store}>
+		<ReactReduxFirebaseProvider {...rfProps}>
+			<App />
+		</ReactReduxFirebaseProvider>
+	</Provider>,
+	document.getElementById('root')
 );
 
 // If you want your app to work offline and load faster, you can change

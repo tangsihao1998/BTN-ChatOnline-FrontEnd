@@ -1,11 +1,13 @@
 import { combineReducers } from 'redux';
-// initialState
-import initialState from './../initialState';
 
 // Import Reducers
 import authReducer from './AuthReducer';
+import chatReducer from './ChatReducer';
+import { firestoreReducer } from 'redux-firestore';
 
 // export State
 export default combineReducers({
-  auth: authReducer(initialState.auth),
+	auth: authReducer,
+	chat: chatReducer,
+	firestore: firestoreReducer,
 });

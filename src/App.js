@@ -1,65 +1,70 @@
 import React from 'react';
 
-
 import HomePage from './pages/HomePage';
 
-import { BrowserRouter as Router,Route,Switch }  from 'react-router-dom'
-import { withRouter } from 'react-router'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { withRouter } from 'react-router';
 
 import Axios from './axios';
+import { compose } from 'redux';
 import { connect } from 'react-redux';
+import { firestoreConnect } from 'react-redux-firebase';
 import actions from './redux/actions';
 import selectors from './redux/selectors';
 import jwt_decode from 'jwt-decode';
 
 // Scroll To Top Component
 class ScrollToTop extends React.Component {
-  componentDidUpdate(prevProps) {
-    if (this.props.location.pathname !== prevProps.location.pathname) {
-      window.scrollTo(0, 0);
-    }
-  }
+	componentDidUpdate(prevProps) {
+		if (this.props.location.pathname !== prevProps.location.pathname) {
+			window.scrollTo(0, 0);
+		}
+	}
 
-  render() {
-    return this.props.children;
-  }
+	render() {
+		return this.props.children;
+	}
 }
 const Scroll = withRouter(ScrollToTop);
 
+class App extends React.Component {
+	componentDidMount() {
+		if (localStorage.jwtToken) {
+			Axios.setAuthToken(localStorage.jwtToken);
+			const decoded = jwt_decode(localStorage.jwtToken);
+			this.props.setCurrentUser(decoded);
+		}
+	}
 
-
-class App extends React.Component{
-
-  componentDidMount(){
-    if(localStorage.jwtToken) {
-      Axios.setAuthToken(localStorage.jwtToken);
-      const decoded = jwt_decode(localStorage.jwtToken);
-      this.props.setCurrentUser(decoded);
-    }
-  }
-
-  render(){
-    return (
-      <Router>
-        <div className="App">
-          <Scroll>
-            <Switch>
-              <Route path='/' component={HomePage} />
-            </Switch>
-          </Scroll>
-        </div>
-      </Router>
-    );
-  }
+	render() {
+		return (
+			<Router>
+				<div className="App">
+					<Scroll>
+						<Switch>
+							<Route path="/" component={HomePage} />
+						</Switch>
+					</Scroll>
+				</div>
+			</Router>
+		);
+	}
 }
 
-const mapDispatchToProps = dispatch => ({
-  setCurrentUser: currentUser => dispatch(actions.setCurrentUser(currentUser)),
-  setError: error => dispatch(actions.setError(error)),
+const mapDispatchToProps = (dispatch) => ({
+	setCurrentUser: (currentUser) => dispatch(actions.setCurrentUser(currentUser)),
+	setError: (error) => dispatch(actions.setError(error)),
 });
 
-const mapStateToProps = state => ({
-  // currentUser: selectors.getCurrentUser(state),
+const mapStateToProps = (state) => ({
+	// currentUser: selectors.getCurrentUser(state),
 });
 
-export default connect(mapStateToProps,mapDispatchToProps) (App);
+export default compose(
+	firestoreConnect(() => [
+		{
+			collection: 'messages',
+		},
+	]),
+	connect(mapStateToProps, mapDispatchToProps)
+)(App);

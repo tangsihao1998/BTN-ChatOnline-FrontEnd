@@ -8,7 +8,6 @@ import { withRouter } from 'react-router';
 import Axios from './axios';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import { firestoreConnect } from 'react-redux-firebase';
 import actions from './redux/actions';
 import jwt_decode from 'jwt-decode';
 
@@ -59,11 +58,7 @@ const mapStateToProps = (state) => ({
 	// currentUser: selectors.getCurrentUser(state),
 });
 
-export default compose(
-	firestoreConnect(() => [
-		{
-			collection: 'messages',
-		},
-	]),
-	connect(mapStateToProps, mapDispatchToProps)
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps
 )(App);

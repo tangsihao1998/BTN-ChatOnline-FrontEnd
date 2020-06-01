@@ -9,14 +9,11 @@ import App from './App';
 
 // Redux
 import { Provider } from 'react-redux';
-import { store, rfProps } from './redux/store';
-import { ReactReduxFirebaseProvider } from 'react-redux-firebase';
+import { store } from './redux/store';
 
 ReactDOM.render(
 	<Provider store={store}>
-		<ReactReduxFirebaseProvider {...rfProps}>
-			<App />
-		</ReactReduxFirebaseProvider>
+		<App />
 	</Provider>,
 	document.getElementById('root')
 );

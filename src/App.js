@@ -6,7 +6,6 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { withRouter } from 'react-router';
 
 import Axios from './axios';
-import { compose } from 'redux';
 import { connect } from 'react-redux';
 import actions from './redux/actions';
 import jwt_decode from 'jwt-decode';
@@ -58,7 +57,4 @@ const mapStateToProps = (state) => ({
 	// currentUser: selectors.getCurrentUser(state),
 });
 
-export default connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

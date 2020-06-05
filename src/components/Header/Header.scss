@@ -1,31 +1,61 @@
 .HomePage__Header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
+  left: 0;
+  right: 0;
   width: 100%;
+  top: 0;
+  z-index: 9;
+  position: absolute;
 
-  font-weight: 400;
-  font-size: 14px;
-  letter-spacing: 0.5px;
-
-  background-color: #faedd0;
-
-  .Header__Logo {
-    height: 100%;
-    width: 20%;
-    max-width: 150px;
-    min-width: 40px;
+  .content--sticky {
+    position: fixed;
+    width: 100%;
+    top: -70px;
+    left: 0;
+    right: 0;
+    z-index: 990;
+    transform: translateY(70px);
+    transition: transform 500ms ease, background 500ms ease;
+    -webkit-transition: transform 500ms ease, background 500ms ease;
+    box-shadow: 0px 3px 16px 0px rgba(0, 0, 0, 0.1);
+    background: #000;
+    background-color: #faedd0;
   }
-  .Header__link {
-    margin: 10px;
 
-    color: #fa897b;
+  .Header__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  
+    width: 100%;
+    padding: 15px 0px;
+  
+    font-weight: 400;
+    font-size: 14px;
+    letter-spacing: 0.5px;
 
-    cursor: pointer;
-    &:hover{
-      font-weight: bold;
-      opacity: 1;
+    .Header__Logo {
+      height: 100%;
+      width: 20%;
+      max-width: 100px;
+      min-width: 40px;
+      padding-left: 15px;
+    }
+    
+    .Header__navigation {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .Header__link {
+        margin: 10px;
+    
+        color: white;
+    
+        cursor: pointer;
+        &:hover{
+          font-weight: bold;
+          opacity: 1;
+        }
+      }
     }
   }
 }

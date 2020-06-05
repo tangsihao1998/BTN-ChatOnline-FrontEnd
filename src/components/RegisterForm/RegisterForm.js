@@ -39,10 +39,10 @@ class RegisterForm extends Component {
                   { errors && errors.password && <p className="Alert">{errors.password}</p> }
                 </div>
               </div>
-              <div className="term">
+              {/* <div className="term">
                 By creating an account you agree to the <br/>
                 <span>Terms of Service</span> and <span>Privacy Policy</span>
-              </div>
+              </div> */}
               <button onClick={handleRegister}>Register</button>
               <hr/>
               <div className="alert">

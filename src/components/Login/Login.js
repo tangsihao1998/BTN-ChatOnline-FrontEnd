@@ -238,7 +238,7 @@ class Login extends Component {
 		return (
 			<div>
 				{/* Content In NAVBAR before LOGIN */}
-				<div className={`LoginForm ${currentUser && 'disable'}`}>
+				<div className={`LoginForm ${currentUser && 'Login--disable'}`}>
 					<button className="Register" onClick={this.handleResShow}>
 						Register
 					</button>

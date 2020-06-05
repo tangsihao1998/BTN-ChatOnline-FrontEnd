@@ -30,12 +30,12 @@ class Header extends PureComponent {
         <header className="HomePage__Header">
           <div className={`Header__content ${ sticky ? 'content--sticky':'' }`} >
             {/* Logo */}
-            <img className="Header__Logo" src={process.env.PUBLIC_URL + "/png/Logo.png"} alt="Logo"></img>
+            <img className="Header__Logo" src={process.env.PUBLIC_URL + "/png/Logo-1.png"} alt="Logo"></img>
             {/* Link */}
             <div className="Header__navigation">
-              <div className="Header__link">TRANG CHỦ</div>
-              <div className="Header__link">VỀ CHÚNG TÔI</div>
-              <div className="Header__link">LIÊN HỆ</div>
+              <div className="Header__link">Trang Chủ</div>
+              <div className="Header__link">Về Chúng Tôi</div>
+              <div className="Header__link">Liên Hệ</div>
             </div>
 
             {/* check IF Đăng Nhập or not */}

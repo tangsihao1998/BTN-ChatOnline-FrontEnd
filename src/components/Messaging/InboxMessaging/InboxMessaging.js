@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import InboxMessages from './InboxMessages'
 import InboxPeople from './InboxPeople'
-import Col from 'react-bootstrap/Col'
+// import Col from 'react-bootstrap/Col'
 import './InboxMessing.scss';
 
 
@@ -9,14 +9,14 @@ import './InboxMessing.scss';
 class InboxMessaging extends Component {
     render() {
         return (
-            <React.Fragment>
-                <Col xs={3}>
+            <div className="Messaging__Inbox">
+                <div className="Inbox__People">
                     <InboxPeople></InboxPeople>
-                </Col>
-                <Col xs={9}>
+                </div>
+                <div className="Inbox__Messages">
                     <InboxMessages></InboxMessages>
-                </Col>
-            </React.Fragment>
+                </div>
+            </div>
         )
     }
 }

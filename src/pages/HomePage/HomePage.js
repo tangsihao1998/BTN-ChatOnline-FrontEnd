@@ -2,13 +2,14 @@ import React, { PureComponent } from 'react';
 
 import './HomePage.scss';
 
+// // import Router
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
 // import components
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import Profile from '../../components/Profile';
-
-// // import Router
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Introduction from '../../components/Introduction';
 
 class HomePage extends PureComponent {
 	render() {
@@ -18,6 +19,7 @@ class HomePage extends PureComponent {
 					{/* HEADER */}
 					<Header {...this.props} />
 					<Switch>
+						<Route exact path="/" component={Introduction}/>
 						<Route exact path="/profile" component={Profile} />
 					</Switch>
 					{/* FOOTER */}

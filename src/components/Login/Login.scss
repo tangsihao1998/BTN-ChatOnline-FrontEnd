@@ -1,7 +1,10 @@
 @import './../../constant/custom-styles.scss';
+@import './../../constant/responsive.scss';
 
 // Login Form before LOGIN
 .LoginForm{
+    margin-right:24px;
+
     .Register {
         @include wordfont;
         width: 59px;
@@ -10,24 +13,39 @@
         // background-color: white;
         background: transparent;
         border: white;
-        color: #4d4d4d;
+        color: white;
         margin-right: 24px;
+
+        @media #{$mobile_device} {
+            display: none;
+        }
     }
     .Login {
         @include wordfont;
         width: 120px;
         height: 35px;
-        border-radius: 100px;
-        border: solid 1px #ffa15f;
-        color: #ffa15f;
-        background-color: white;
-        margin-right:24px;
-        font-weight: bold;
-    }
-    
+
+
+        color: #fff;
+
+        background-color: #42B3FA;
+
+        font-weight: 500;
+        font-size: 14px;
+
+        border: 1px solid transparent;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        border-radius: 4px;
+
+        @media #{$mobile_device} {
+            display: none;
+        }
+    } 
 }
-.LoginForm.disable{
-    display:none !important;
+
+.Login--disable{
+    display:none;
 }
 // __________________________________________________________________________________________________
 

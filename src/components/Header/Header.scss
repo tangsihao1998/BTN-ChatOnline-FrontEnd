@@ -1,31 +1,117 @@
+@import './../../constant/responsive.scss';
+
 .HomePage__Header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
+  left: 0;
+  right: 0;
   width: 100%;
+  top: 0;
+  z-index: 9;
+  position: absolute;
 
-  font-weight: 400;
-  font-size: 14px;
-  letter-spacing: 0.5px;
-
-  background-color: #faedd0;
-
-  .Header__Logo {
-    height: 100%;
-    width: 20%;
-    max-width: 150px;
-    min-width: 40px;
+  .content--sticky {
+    position: fixed;
+    width: 100%;
+    top: -70px;
+    left: 0;
+    right: 0;
+    z-index: 990;
+    transform: translateY(70px);
+    transition: transform 500ms ease, background 500ms ease;
+    -webkit-transition: transform 500ms ease, background 500ms ease;
+    box-shadow: 0px 3px 16px 0px rgba(0, 0, 0, 0.1);
+    background: #000;
   }
-  .Header__link {
-    margin: 10px;
 
-    color: #fa897b;
+  .Header__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  
+    width: 100%;
+    padding: 15px 0px;
+  
+    font-weight: 400;
+    font-size: 14px;
+    letter-spacing: 0.5px;
 
-    cursor: pointer;
-    &:hover{
-      font-weight: bold;
-      opacity: 1;
+    @media #{$mobile_device} {
+      padding: 10px 0px;
+      background: #2C2C2C;
+    }
+
+    .Header__Logo {
+      height: 100%;
+      width: 20%;
+      max-width: 60px;
+      min-width: 40px;
+      margin-left: 30px;
+    }
+    
+    .Header__navigation {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      @media #{$mobile_device} {
+        display: none;
+      }
+      .Header__link {
+        margin: 10px;
+    
+        color: white;
+    
+        text-decoration: unset;
+
+        cursor: pointer;
+        &:hover{
+          font-weight: bold;
+          opacity: 1;
+        }
+      }
+    }
+
+    .Header__MenuIcon {
+      @media #{$large_device} {
+        display: none;
+      }
+      @media #{$tablet_device} {
+        display: none;
+      }
+      @media #{$mid_device} {
+        display: none;
+      }
+    }
+
+    .Header__Submenu {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      position: absolute;
+
+      background-color: white;
+      z-index: 100;
+      right: 10px;
+      top: 80%;
+
+      box-shadow: 0 0  10px rgba(0,0,0,.02);
+
+      border-radius: 10px;
+      @media #{$large_device} {
+        display: none;
+      }
+      @media #{$tablet_device} {
+        display: none;
+      }
+      @media #{$mid_device} {
+        display: none;
+      }
+
+      .Submenu__Link {
+        padding: 10px;
+        text-decoration: unset;
+        color: #2C2C2C;
+      }
     }
   }
 }

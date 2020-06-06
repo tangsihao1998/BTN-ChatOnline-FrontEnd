@@ -38,10 +38,20 @@ class App extends Component {
   }
 
 
-	componentDidMount() {
+	async componentDidMount() {
 		// Try to authenticate with the JWT stored in localStorage
-		client.authenticate().catch(() => this.setState({ login: null }));
-
+		// client.authenticate().catch(() => this.setState({ login: null }));
+		try {
+			// First try to log in with an existing JWT
+			console.log('Trying to reauth')
+			const result = await client.reAuthenticate();
+			const user = result.user;
+			console.log(`User: ${user}`);
+			this.props.setCurrentUser(user);
+		} catch (error) {
+			// If cannot reauthenticate
+			this.setState({ login: null });
+		}
 		// if (localStorage.jwtToken) {
 		// 	Axios.setAuthToken(localStorage.jwtToken);
 		// 	const decoded = jwt_decode(localStorage.jwtToken);

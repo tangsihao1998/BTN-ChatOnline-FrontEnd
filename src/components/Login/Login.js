@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import actions from './../../redux/actions';
 import selectors from './../../redux/selectors';
 
+import client from '../../feathers';
 import Axios from './../../axios';
 import jwt_decode from 'jwt-decode';
 
@@ -174,26 +175,41 @@ class Login extends Component {
 	};
 
 	// Handle Log In Event
-	handleLogIn = (e) => {
+	handleLogIn = async (e) => {
 		e.preventDefault();
 		const { setCurrentUser, setError } = this.props;
-		const user = {
-			email: this.state.email,
-			password: this.state.password,
-		};
-		Axios.api
-			.post('/user/login', user)
-			.then((res) => {
-				// Save Token to Local Storage And Send state for modal
-				const { token } = res.data;
-				localStorage.setItem('jwtToken', token);
-				Axios.setAuthToken(token);
-				const decoded = jwt_decode(token);
-				setCurrentUser(decoded);
-			})
-			.catch((err) => {
-				setError(err);
+		try {
+			const result = await client.authenticate({
+				strategy: 'local',
+				email: this.state.email,
+				password: this.state.password,
 			});
+			setCurrentUser(result.user);
+		} catch (err) {
+			if (err.code === 401) {
+				// TODO: show error in login form
+				alert('Wrong email/password combination');
+			} else {
+				alert('An unknown error has occured');
+			}
+		}
+		// const user = {
+		// 	email: this.state.email,
+		// 	password: this.state.password,
+		// };
+		// Axios.api
+		// 	.post('/user/login', user)
+		// 	.then((res) => {
+		// 		// Save Token to Local Storage And Send state for modal
+		// 		const { token } = res.data;
+		// 		localStorage.setItem('jwtToken', token);
+		// 		Axios.setAuthToken(token);
+		// 		const decoded = jwt_decode(token);
+		// 		setCurrentUser(decoded);
+		// 	})
+		// 	.catch((err) => {
+		// 		setError(err);
+		// 	});
 	};
 
 	// Handle Log Out Event
@@ -202,8 +218,9 @@ class Login extends Component {
 		this.setState({
 			infoshow: false,
 		});
-		localStorage.removeItem('jwtToken');
-		Axios.setAuthToken(false);
+		client.logout();
+		// localStorage.removeItem('jwtToken');
+		// Axios.setAuthToken(false);
 		this.props.signOutUser();
 		this.props.history.push('/');
 	};
@@ -252,7 +269,7 @@ class Login extends Component {
 					{currentUser && (
 						<img
 							src={process.env.PUBLIC_URL + currentUser.image}
-							class="userIMG"
+							className="userIMG"
 							alt="user-images"
 							onClick={this.HandleUserSetting}
 						/>

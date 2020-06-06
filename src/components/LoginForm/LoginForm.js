@@ -27,7 +27,7 @@ class LoginForm extends Component {
                 <div className="otherform">
                     <input type="checkbox" name="remember" value="remember" className="remembercheckbox"/>
                     <label>Remember password</label>
-                    {/* <div onClick={this.HandleLogtoForgot}>Forgot your password?</div> */}
+                    <div onClick={this.HandleLogtoForgot}>Forgot your password?</div>
                 </div>
             </div>
             <button onClick={handleLogIn}>Log In</button>

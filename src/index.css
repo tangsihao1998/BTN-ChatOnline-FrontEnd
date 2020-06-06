@@ -5,6 +5,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  height: 100vh;
+  
 }
 
 code {
@@ -14,4 +16,11 @@ code {
 
 img {
   object-fit: cover;
+}
+#root {
+  height: 100%;
+}
+
+.App {
+  height: 100%
 }

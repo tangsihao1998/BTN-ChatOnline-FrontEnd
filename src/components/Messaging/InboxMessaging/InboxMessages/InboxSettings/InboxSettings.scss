@@ -1,0 +1,17 @@
+.Inbox_Settings_Component {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    .Img_Of_PeopleChat {
+        max-width: 100%;
+        justify-content: center;
+    }
+    .Image_In_Settings {
+        max-width: 100%;
+    }
+    .List_Of_Button_Modifies {
+        display: flex;
+        flex-direction: column;
+    }
+}

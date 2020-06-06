@@ -6,6 +6,7 @@ import './HomePage.scss';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 // import components
+// import Messaging from '../../components/Messaging';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import Profile from '../../components/Profile';
@@ -21,6 +22,7 @@ class HomePage extends PureComponent {
 					<Switch>
 						<Route exact path="/" component={Introduction}/>
 						<Route exact path="/profile" component={Profile} />
+						{/* <Route exact path="/" component={Messaging} /> */}
 					</Switch>
 					{/* FOOTER */}
 					<Footer {...this.props} />

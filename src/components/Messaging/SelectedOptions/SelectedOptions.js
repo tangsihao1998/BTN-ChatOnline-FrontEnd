@@ -3,9 +3,11 @@ import React, { Component } from 'react'
 class SelectedOptions extends Component {
     render() {
         return (
-            <React.Fragment>
-                <h3>SelectedOptions</h3>
-            </React.Fragment>
+            <div className="Selected_Options">
+                {/* import button chat with a friend */}
+                {/* import button chat group */}
+                {/* import button chat with anonymous user */}
+            </div>
         )
     }
 }

@@ -1,0 +1,47 @@
+.Footer {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 500px;
+    // height: 500px;
+    .Footer_Top {
+        display: flex;
+        justify-content: space-around;
+        height: 80%;
+        background: #1F1F1F;
+        .About_TalkDer {
+            margin-top: 20px;
+            color: #C7C7C7;
+            .TalkDer {
+                color: #C7C7C7;
+                font-size: 30px;
+            }
+            .TalkDer_Description {
+                color: #C7C7C7;
+                font-size: 20px;
+            }
+        }
+        .Contact_Us {
+            margin-top: 20px;
+            color: #C7C7C7;
+            .Label_Contactus {
+                color: #C7C7C7;
+                font-size: 30px;
+            }
+        }
+    }
+    .Footer_Bottom_Copyright {
+        height: 20%;
+        background: #000000;
+        text-align: center;
+        .Copyright_Text {
+            margin-top: 20px;
+            font-size: 13px;
+            color: #C7C7C7;
+            margin-bottom: 0;
+            font-weight: 400;
+        }
+    }
+}

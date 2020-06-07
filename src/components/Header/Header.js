@@ -30,6 +30,10 @@ class Header extends PureComponent {
     }
   }
 
+  ImageClick = (e) => {
+    this.props.history.push('/');
+  }
+
   showDropDown = (e) => {
     const { dropdown } = this.state;
     if(dropdown) {
@@ -48,7 +52,7 @@ class Header extends PureComponent {
         <header className="HomePage__Header">
           <div className={`Header__content ${ sticky ? 'content--sticky':'' }`} >
             {/* Logo */}
-            <img className="Header__Logo" src={process.env.PUBLIC_URL + "/png/Logo-1.png"} alt="Logo"></img>
+            <img className="Header__Logo" src={process.env.PUBLIC_URL + "/png/Logo-1.png"} alt="Logo" onClick={this.ImageClick}></img>
             {/* Link */}
             <div className="Header__navigation">
               <Link className="Header__link" to='/'>Trang Chủ</Link>

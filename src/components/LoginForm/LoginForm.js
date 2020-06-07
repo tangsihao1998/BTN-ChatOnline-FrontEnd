@@ -50,39 +50,42 @@ class LoginForm extends Component {
         <div className="Login__title">Log In</div>
 
         <div className="Login__content">
-          <div className="Login__inputform">
-            { errors && (<div className="Inputform__alert"> {errors} </div>)}
-            <div className="Inputform__component">
-              <div className="Input__title">E-MAIL:</div>
-              <input 
-                className={`Input__style ${(errors === 'Wrong email/password combination') && 'errorForm'}`} 
-                type="email" 
-                placeholder="Enter your email..." 
-                name="email" 
-                onChange={this.handleTextChange} 
-                value={email}
-              />
-            </div>
-            <div className="Inputform__component">
-              <div className="Input__title">PASSWORD:</div>
-              <input 
-                className={`Input__style ${(errors === 'Wrong email/password combination') && 'errorForm'}`} 
-                type="password" 
-                placeholder="Enter your password..." 
-                name="password" 
-                onChange={this.handleTextChange} 
-                value={password}
-              />
-            </div>
+          <form onSubmit={this.handleLogIn}>
 
-            <Link className="Forgot__navigate"to='/authentication/forgotpassword'>Forgot your password?</Link>
-          </div>
-          <button className="Login__button" onClick={this.handleLogIn}>Log In</button>
-          <hr/>
-          <div className="Login__navigate">
-            <div>Don't have an account?</div>
-            <Link className="Navigate__register" to="/authentication/register">Register</Link>
-          </div>
+            <div className="Login__inputform">
+              { errors && (<div className="Inputform__alert"> {errors} </div>)}
+              <div className="Inputform__component">
+                <div className="Input__title">E-MAIL:</div>
+                <input 
+                  className={`Input__style ${(errors === 'Wrong email/password combination') && 'errorForm'}`} 
+                  type="email" 
+                  placeholder="Enter your email..." 
+                  name="email" 
+                  onChange={this.handleTextChange} 
+                  value={email}
+                />
+              </div>
+              <div className="Inputform__component">
+                <div className="Input__title">PASSWORD:</div>
+                <input 
+                  className={`Input__style ${(errors === 'Wrong email/password combination') && 'errorForm'}`} 
+                  type="password" 
+                  placeholder="Enter your password..." 
+                  name="password" 
+                  onChange={this.handleTextChange} 
+                  value={password}
+                />
+              </div>
+
+              <Link className="Forgot__navigate"to='/authentication/forgotpassword'>Forgot your password?</Link>
+            </div>
+            <button className="Login__button" type='submit'>Log In</button>
+            <hr/>
+            <div className="Login__navigate">
+              <div>Don't have an account?</div>
+              <Link className="Navigate__register" to="/authentication/register">Register</Link>
+            </div>
+          </form>
         </div>
       </div>
     )

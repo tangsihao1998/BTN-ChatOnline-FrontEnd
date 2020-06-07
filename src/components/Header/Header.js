@@ -68,8 +68,8 @@ class Header extends PureComponent {
             {
               dropdown ? (
               <div className="Header__Submenu">
-                <Link className="Submenu__Link" to='/login'>Đăng Nhập</Link>
-                <Link className="Submenu__Link" to='/signup'>Đăng Ký</Link>
+                <Link className="Submenu__Link" to='/authentication/signin'>Đăng Nhập</Link>
+                <Link className="Submenu__Link" to='/authentication/register'>Đăng Ký</Link>
                 <Link className="Submenu__Link" to='/'>Trang Chủ</Link>
                 <Link className="Submenu__Link" to='/about'>Về Chúng Tôi</Link>
                 <Link className="Submenu__Link" to='/contact'>Liên Hệ</Link>

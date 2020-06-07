@@ -13,8 +13,13 @@
   @include wordfont;
 
   @media #{$mobile_device} {
-    display: block;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
     padding: 10px;
+
+    height: 550px;
   }
 
   .Login__title {
@@ -24,6 +29,9 @@
     line-height: 55px;
     text-transform: capitalize;
     font-weight: 400;
+    @media #{$mobile_device} {
+      margin-bottom: 20px;
+    }
   }
 
   .Login__content {

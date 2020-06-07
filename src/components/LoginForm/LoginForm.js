@@ -56,7 +56,7 @@ class LoginForm extends Component {
               <div className="Input__title">E-MAIL:</div>
               <input 
                 className={`Input__style ${(errors === 'Wrong email/password combination') && 'errorForm'}`} 
-                type="text" 
+                type="email" 
                 placeholder="Enter your email..." 
                 name="email" 
                 onChange={this.handleTextChange} 

@@ -174,43 +174,7 @@ class Login extends Component {
 			});
 	};
 
-	// Handle Log In Event
-	handleLogIn = async (e) => {
-		e.preventDefault();
-		const { setCurrentUser, setError } = this.props;
-		try {
-			const result = await client.authenticate({
-				strategy: 'local',
-				email: this.state.email,
-				password: this.state.password,
-			});
-			setCurrentUser(result.user);
-		} catch (err) {
-			if (err.code === 401) {
-				// TODO: show error in login form
-				alert('Wrong email/password combination');
-			} else {
-				alert('An unknown error has occured');
-			}
-		}
-		// const user = {
-		// 	email: this.state.email,
-		// 	password: this.state.password,
-		// };
-		// Axios.api
-		// 	.post('/user/login', user)
-		// 	.then((res) => {
-		// 		// Save Token to Local Storage And Send state for modal
-		// 		const { token } = res.data;
-		// 		localStorage.setItem('jwtToken', token);
-		// 		Axios.setAuthToken(token);
-		// 		const decoded = jwt_decode(token);
-		// 		setCurrentUser(decoded);
-		// 	})
-		// 	.catch((err) => {
-		// 		setError(err);
-		// 	});
-	};
+
 
 	// Handle Log Out Event
 	handleLogoutEvent = (e) => {
@@ -255,7 +219,7 @@ class Login extends Component {
 		return (
 			<div>
 				{/* Content In NAVBAR before LOGIN */}
-				<div className={`LoginForm ${currentUser && 'Login--disable'}`}>
+				<div className={`Button__component ${currentUser && 'disable'}`}>
 					<Link className="Register" to='/authentication/register'>
 						Register
 					</Link>
@@ -289,17 +253,6 @@ class Login extends Component {
 				{/* ALL MODAL OF LOGIN FORM */}
 				{/* ______________________________________________________________________________________________________ */}
 				{/*  Login The Modal  */}
-				<LoginForm
-					currentUser={currentUser}
-					loginshow={loginshow}
-					handleLoginShow={this.handleLoginShow}
-					errors={errors}
-					handleLogIn={this.handleLogIn}
-					HandleLogtoRes={this.HandleLogtoRes}
-					email={email}
-					password={password}
-					handleTextChange={this.handleTextChange}
-				/>
 				{/* ______________________________________________________________________________________________________ */}
 
 				{/*  Register The Modal  */}

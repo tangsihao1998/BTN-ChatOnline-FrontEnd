@@ -25,9 +25,10 @@ class HomePage extends PureComponent {
 					<Switch>
 						<div className='App__background'>
 							<Route exact path="/" component={Introduction}/>
+							<Route path="/authentication" component={AuthenticationContainer} />
 							<Route exact path="/profile" component={Profile} />
-							<Route exact path="/authentication" component={AuthenticationContainer} />
 							<Route exact path="/contact" component={Contact}/>
+
 							{/* <Route exact path="/" component={Messaging} /> */}
 						</div>
 					</Switch>

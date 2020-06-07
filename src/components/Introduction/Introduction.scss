@@ -1,96 +1,74 @@
 @import './../../constant/responsive.scss';
 
-.Introduction__background{
-  background-image: url('/png/banner.png');
-}
-
 .Introduction {
   display: flex;
+  justify-content: space-between;
   align-items: center;
 
-  height: 900px;
-        
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-  background-position: center center;
+  height: 100%;
+  width: 100%;
 
-  @media #{$mobile_device} {
-    height: auto;
-    background-size: cover;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+
+  @media #{$large_device}{
+    max-width: 1140px;
   }
-  @media #{$tablet_device} {
-    height: 620px;
-    // background-size: cover;
+  @media #{$mid_device}{
+    max-width: 960px;
+  }
+  @media #{$tablet_device}{
+    max-width: 720px;
+  }
+  @media #{$large_mobile}{
+    max-width: 540px;
+  }
+
+  .Introduction__navigation {
+    color: #FFF;
+    width: 50%;
+    .Introduction__intro {
+      font-size: 40px;
+      letter-spacing: 3px;
+      line-height: 55px;
+      text-transform: capitalize;
+      font-weight: 400;
+    }
+
+    .Introduction__link {
+      background: #37EBED;
+      color: #fff;
+      display: inline-block;
+      padding: 14px 27px;
+      font-size: 16px;
+      font-weight: 500;
+      border: 0;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      border-radius: 5px;
+      text-align: center;
+      text-transform: capitalize;
+      -webkit-transition: 0.5s;
+      -moz-transition: 0.5s;
+      -o-transition: 0.5s;
+      transition: 0.5s;
+      cursor: pointer;
+      letter-spacing: 2px;
+      text-decoration: unset;
+    }
   }
   
-  .Introduction__container {
+  .Introduction__image {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
-    width: 100%;
-    padding-right: 15px;
-    padding-left: 15px;
-    margin-right: auto;
-    margin-left: auto;
-
-    @media #{$large_device}{
-      max-width: 1140px;
+    width: 50%;
+    .Image__content {
+      width: 75%;
+      max-width: 450px;
+      min-width: 240px;
     }
-    @media #{$mid_device}{
-      max-width: 960px;
-    }
-    @media #{$tablet_device}{
-      max-width: 720px;
-    }
-    @media #{$large_mobile}{
-      max-width: 540px;
-    }
-    
-    .Introduction__navigation {
-      color: #FFF;
-      width: 50%;
-      .Introduction__intro {
-        font-size: 40px;
-        letter-spacing: 3px;
-        line-height: 55px;
-        text-transform: capitalize;
-        font-weight: 400;
-      }
-  
-      .Introduction__link {
-        background: #37EBED;
-        color: #fff;
-        display: inline-block;
-        padding: 14px 27px;
-        font-size: 16px;
-        font-weight: 500;
-        border: 0;
-        -webkit-border-radius: 5px;
-        -moz-border-radius: 5px;
-        border-radius: 5px;
-        text-align: center;
-        text-transform: capitalize;
-        -webkit-transition: 0.5s;
-        -moz-transition: 0.5s;
-        -o-transition: 0.5s;
-        transition: 0.5s;
-        cursor: pointer;
-        letter-spacing: 2px;
-        text-decoration: unset;
-      }
-    }
-   
-    .Introduction__image {
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      width: 50%;
-      .Image__content {
-        width: 75%;
-        max-width: 450px;
-        min-width: 240px;
-      }
-    }
-
   }
 }

@@ -239,12 +239,12 @@ class Login extends Component {
 			<div>
 				{/* Content In NAVBAR before LOGIN */}
 				<div className={`LoginForm ${currentUser && 'Login--disable'}`}>
-					<button className="Register" onClick={this.handleResShow}>
+					<Link className="Register" to='/authentication/register'>
 						Register
-					</button>
-					<button className="Login" onClick={this.handleLoginShow}>
+					</Link>
+					<Link className="Login" to='/authentication/signin'>
 						Log In
-					</button>
+					</Link>
 				</div>
 
 				{/* Content In NAVBAR after LOGIN */}

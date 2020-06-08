@@ -40,7 +40,7 @@ class ForgotPasswordForm extends Component {
                   <div className="Input__title">E-MAIL</div>
                   <input 
                     className='Input__style' 
-                    type="text" 
+                    type="email" 
                     placeholder="Enter your email..." 
                     name="email"
                     value={email}

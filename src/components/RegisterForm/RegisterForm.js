@@ -32,7 +32,7 @@ class RegisterForm extends Component {
     const { password, repassword } = this.state;
     if( password === repassword ) {
       try {
-        const result = await client.service('users').create({
+        await client.service('users').create({
           name: this.state.username, 
           email: this.state.email, 
           password: this.state.password, 
@@ -41,7 +41,6 @@ class RegisterForm extends Component {
           alert('Create Success, Redirect to Login')
           this.props.history.push('/authentication/signin');
         })
-        // setCurrentUser(result.user);
       } catch (err) {
         console.log("RegisterForm -> handleRegister -> err", err)
         // if (err.code === 401) {

@@ -24,36 +24,44 @@ class RegisterForm extends Component {
 		this.setState({ [name]: value });
 	};
 
+  handleCheckRegister = () => {
+    const {username, password, repassword} = this.state
+    if(username <= 6) {
+      this.setState({
+        errors: "Username has at least 6 characters and doesn't include special characters"
+      })
+      return false;
+    }
+    if(!(password === repassword )) {
+      this.setState({
+        errors: "Your confirmed password are unmatch"
+      })
+      return false
+    }
+  }
+
   	// Handle Register Event
 	handleRegister = async (e) => {
 		e.preventDefault();
 		// const { setCurrentUser, setError } = this.props;
-
-    const { password, repassword } = this.state;
-    if( password === repassword ) {
-      try {
-        await client.service('users').create({
-          name: this.state.username, 
-          email: this.state.email, 
-          password: this.state.password, 
-          phone: this.state.phone
-        }).then(() => {
-          alert('Create Success, Redirect to Login')
-          this.props.history.push('/authentication/signin');
-        })
-      } catch (err) {
-        console.log("RegisterForm -> handleRegister -> err", err)
-        // if (err.code === 401) {
-        //   // TODO: show error in login form
-        //   this.setState({ errors: 'Wrong email/password combination'})
-        // } else {
-        //   this.setState({ errors: 'An unknown error has occured'})
-        // }
-      }
-    } else {
-      this.setState({
-        errors: 'Fail combination of password and retype password'
+    try {
+      await client.service('users').create({
+        name: this.state.username, 
+        email: this.state.email, 
+        password: this.state.password, 
+        phone: this.state.phone
+      }).then(() => {
+        alert('Create Success, Redirect to Login')
+        this.props.history.push('/authentication/signin');
       })
+    } catch (err) {
+      console.log("RegisterForm -> handleRegister -> err", err)
+      // if (err.code === 401) {
+      //   // TODO: show error in login form
+      //   this.setState({ errors: 'Wrong email/password combination'})
+      // } else {
+      //   this.setState({ errors: 'An unknown error has occured'})
+      // }
     }
   };
   

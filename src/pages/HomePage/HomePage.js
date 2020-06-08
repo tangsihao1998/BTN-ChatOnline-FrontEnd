@@ -14,7 +14,6 @@ import Introduction from '../../components/Introduction';
 import AuthenticationContainer from './../../components/AuthenticationContainer';
 import Contact from '../../components/Contact';
 
-
 class HomePage extends PureComponent {
 	render() {
 		return (

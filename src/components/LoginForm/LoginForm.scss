@@ -1,7 +1,6 @@
 @import './../../constant/responsive.scss';
 @import './../../constant/custom-styles.scss';
 
-
 .LoginForm {
   width: 100%;
   display: flex;
@@ -16,8 +15,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
-    padding: 10px;
 
     height: 550px;
   }

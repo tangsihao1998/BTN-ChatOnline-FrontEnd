@@ -9,6 +9,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import LoginForm from './../LoginForm';
 import RegisterForm from './../RegisterForm';
 import ForgotPasswordForm from './../ForgotPasswordForm';
+
 class AuthenticationContainer extends Component {
 
   componentDidMount () {

@@ -24,6 +24,7 @@ class RegisterForm extends Component {
 		this.setState({ [name]: value });
 	};
 
+  // Validate
   handleCheckRegister = () => {
     const {username, password, repassword} = this.state
     const format = /^[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/;
@@ -96,6 +97,7 @@ class RegisterForm extends Component {
                     name="username" 
                     onChange={this.handleTextChange} 
                     value={username}
+                    required
                   />
                 </div>
                 <div className="Inputform__component">
@@ -107,6 +109,7 @@ class RegisterForm extends Component {
                     name="phone" 
                     onChange={this.handleTextChange} 
                     value={phone}
+                    required
                   />
                 </div>
                 <div className="Inputform__component">
@@ -118,6 +121,7 @@ class RegisterForm extends Component {
                     name="email" 
                     onChange={this.handleTextChange} 
                     value={email}
+                    required
                   />
                 </div>
                 <div className="Inputform__component">
@@ -129,6 +133,7 @@ class RegisterForm extends Component {
                     name="password" 
                     onChange={this.handleTextChange} 
                     value={password}
+                    required
                   />
                 </div>
                 <div className="Inputform__component">
@@ -140,6 +145,7 @@ class RegisterForm extends Component {
                     name="repassword" 
                     onChange={this.handleTextChange} 
                     value={repassword}
+                    required
                   />
                 </div>
               </div>

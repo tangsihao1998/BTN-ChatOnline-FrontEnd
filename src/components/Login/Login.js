@@ -7,13 +7,6 @@ import actions from './../../redux/actions';
 import selectors from './../../redux/selectors';
 
 import client from '../../feathers';
-import Axios from './../../axios';
-import jwt_decode from 'jwt-decode';
-
-import ForgotPasswordForm from './../ForgotPasswordForm';
-
-import LoginForm from './../LoginForm';
-import RegisterForm from './../RegisterForm';
 
 import { Link } from 'react-router-dom';
 
@@ -86,16 +79,6 @@ class Login extends Component {
 						</div>
 					</div>
 				</div>
-
-				{/*  Forgot Password The Modal  */}
-				{/* <ForgotPasswordForm
-					forgotshow={forgotshow}
-					handleForgotShow={this.handleForgotShow}
-					handleTextChange={this.handleTextChange}
-					email={email}
-					HandleForgottoLog={this.HandleForgottoLog}
-				/> */}
-				{/* __________________________________________________________________________________________________________________________________ */}
 			</div>
 		);
 	}

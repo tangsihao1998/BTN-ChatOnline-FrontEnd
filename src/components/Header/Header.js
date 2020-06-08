@@ -22,7 +22,7 @@ class Header extends PureComponent {
 
   componentDidMount() {
     window.onscroll = () => {
-      if(window.pageYOffset > 50) { 
+      if(window.pageYOffset > 150) { 
         this.setState({ sticky: true })
       } else {
         this.setState({ sticky: false })

@@ -25,15 +25,37 @@ class RegisterForm extends Component {
 	};
 
   	// Handle Register Event
-	handleRegister = (e) => {
+	handleRegister = async (e) => {
 		e.preventDefault();
-		const { setCurrentUser, setError } = this.props;
-		const user = {
-			name: this.state.username,
-			email: this.state.email,
-			password: this.state.password,
-			phone: this.state.phone,
-		};
+		// const { setCurrentUser, setError } = this.props;
+
+    const { password, repassword } = this.state;
+    if( password === repassword ) {
+      try {
+        const result = await client.service('users').create({
+          name: this.state.username, 
+          email: this.state.email, 
+          password: this.state.password, 
+          phone: this.state.phone
+        }).then(() => {
+          alert('Create Success, Redirect to Login')
+          this.props.history.push('/authentication/signin');
+        })
+        // setCurrentUser(result.user);
+      } catch (err) {
+        console.log("RegisterForm -> handleRegister -> err", err)
+        // if (err.code === 401) {
+        //   // TODO: show error in login form
+        //   this.setState({ errors: 'Wrong email/password combination'})
+        // } else {
+        //   this.setState({ errors: 'An unknown error has occured'})
+        // }
+      }
+    } else {
+      this.setState({
+        errors: 'Fail combination of password and retype password'
+      })
+    }
   };
   
   render() {
@@ -55,7 +77,7 @@ class RegisterForm extends Component {
                   <input 
                     className={`Input__style ${(errors === 'Wrong email/password combination') && 'errorForm'}`} 
                     type="text" 
-                    placeholder="Enter your password..." 
+                    placeholder="Enter your username..." 
                     name="username" 
                     onChange={this.handleTextChange} 
                     value={username}
@@ -66,7 +88,7 @@ class RegisterForm extends Component {
                   <input 
                     className={`Input__style ${(errors === 'Wrong email/password combination') && 'errorForm'}`} 
                     type="tel" 
-                    placeholder="Enter your password..." 
+                    placeholder="Enter your phone..." 
                     name="phone" 
                     onChange={this.handleTextChange} 
                     value={phone}

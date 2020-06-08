@@ -26,9 +26,16 @@ class RegisterForm extends Component {
 
   handleCheckRegister = () => {
     const {username, password, repassword} = this.state
-    if(username <= 6) {
+    const format = /^[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/;
+    if(username.length <= 6 || username.match(format) || username.length > 50 ) {
       this.setState({
-        errors: "Username has at least 6 characters and doesn't include special characters"
+        errors: "Username has at least 6 characters or maximun 50 characters and doesn't include special characters"
+      })
+      return false;
+    }
+    if(password.match(format)) {
+      this.setState({
+        errors: "Password doesnt include special characters"
       })
       return false;
     }
@@ -38,6 +45,7 @@ class RegisterForm extends Component {
       })
       return false
     }
+    return true
   }
 
   	// Handle Register Event

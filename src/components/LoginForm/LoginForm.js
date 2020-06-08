@@ -63,6 +63,7 @@ class LoginForm extends Component {
                   name="email" 
                   onChange={this.handleTextChange} 
                   value={email}
+                  required
                 />
               </div>
               <div className="Inputform__component">
@@ -74,6 +75,7 @@ class LoginForm extends Component {
                   name="password" 
                   onChange={this.handleTextChange} 
                   value={password}
+                  required
                 />
               </div>
 

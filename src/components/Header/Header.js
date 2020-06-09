@@ -1,15 +1,15 @@
 import React, { PureComponent } from 'react';
 import './Header.scss';
 
-// import components
-import Login from './../Login';
-
 // import react-router-dom
 import { Link } from 'react-router-dom';
 // import material-UI
 import { IconButton } from '@material-ui/core';
 import { Menu } from '@material-ui/icons';
 
+// import components
+import Login from './../Login';
+import HeaderDropDownItem from './../HeaderDropDownItem';
 
 class Header extends PureComponent {
   constructor(props) {
@@ -44,9 +44,12 @@ class Header extends PureComponent {
     }
   };
 
+  handleCloseDropdown = (e) => {
+    this.setState({ dropdown: false });
+  }
   render() {
     const { sticky, dropdown } = this.state;
-    
+    const token = localStorage.getItem('feathers-jwt');
     return (
       <React.Fragment>
         <header className="HomePage__Header">
@@ -62,20 +65,15 @@ class Header extends PureComponent {
 
             {/* check IF Đăng Nhập or not */}
             <Login {...this.props}/>
-            <IconButton edge="start" className="Header__MenuIcon" color="inherit" aria-label="menu" onClick={this.showDropDown}>
-              <Menu />
-            </IconButton>
-            {
-              dropdown ? (
-              <div className="Header__Submenu">
-                <Link className="Submenu__Link" to='/authentication/signin'>Đăng Nhập</Link>
-                <Link className="Submenu__Link" to='/authentication/register'>Đăng Ký</Link>
-                <Link className="Submenu__Link" to='/'>Trang Chủ</Link>
-                <Link className="Submenu__Link" to='/about'>Về Chúng Tôi</Link>
-                <Link className="Submenu__Link" to='/contact'>Liên Hệ</Link>
-              </div>): (<React.Fragment />)
+            {token ? (<React.Fragment />):
+              (  
+                <IconButton edge="start" className="Header__MenuIcon" color="inherit" aria-label="menu" onClick={this.showDropDown}>
+                  <Menu />
+                </IconButton>
+              )
             }
-            
+        
+            {(dropdown && !token) ? ( <HeaderDropDownItem handleCloseDropdown={this.handleCloseDropdown}/>): (<React.Fragment />)}
           </div>
         </header>
       </React.Fragment>

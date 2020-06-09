@@ -1,119 +1,94 @@
 @import './../../constant/custom-styles.scss';
 @import './../../constant/responsive.scss';
 
-// Login Form before LOGIN
-.Button__component{
-    margin-right: 24px;
-
-    .Register {
-        @include wordfont;
-        width: 59px;
-        height: 22px;
-        font-size: 14px;
-        // background-color: white;
-        background: transparent;
-        border: white;
-        color: white;
+.AuthenComponent {
+    // Login Form before LOGIN
+    .Button__component{
         margin-right: 24px;
-        
-        text-decoration: unset;
-
         @media #{$mobile_device} {
             display: none;
         }
-    }
-    .Login {
-        @include wordfont;
-        padding: 10px 40px;
-
-        color: #fff;
-
-        background-color: #42B3FA;
-
-        font-weight: 500;
-        font-size: 14px;
-
-        text-decoration: unset;
-
-        border: 1px solid transparent;
-        -webkit-border-radius: 4px;
-        -moz-border-radius: 4px;
-        border-radius: 4px;
-
-        @media #{$mobile_device} {
-            display: none;
-        }
-    } 
-}
-
-.disable{
-    display:none;
-}
-// __________________________________________________________________________________________________
-
-// USER FORM AFTER LOGIN
-.User-form{
-    display:none;
-    position: relative;
-    .userIMG{
-        width:30px;
-        height:30px;
-        border-radius: 15px;
-        margin: 5px 25px 0px;
-        cursor: pointer;
-    }
-    .User-Info{
-        display:none;
-        background-color: #fbfbfb;
-        width: 181px;
-        height: 72px;
-        position: absolute;
-        right: 25px;
-        top: 50px;
-        z-index:20;
-        .User__settings {
+        .Register {
+            @include wordfont;
+            width: 59px;
+            height: 22px;
+            font-size: 14px;
+            // background-color: white;
+            background: transparent;
+            border: white;
+            color: white;
+            margin-right: 24px;
+            
             text-decoration: unset;
-            color: #4d4d4d;
         }
-        div{
-            width:100%;
-            height:36px;
-            border: 1px solid #eaeaea;
-            padding-top:8px;
-            padding-left:13px;
-            font-size: 12px;
+        .Login {
+            @include wordfont;
+            padding: 10px 40px;
+
+            color: #fff;
+
+            background-color: #42B3FA;
+
             font-weight: 500;
-            color: #4d4d4d;
-            cursor: pointer;
+            font-size: 14px;
+
+            text-decoration: unset;
+
+            border: 1px solid transparent;
+            -webkit-border-radius: 4px;
+            -moz-border-radius: 4px;
+            border-radius: 4px;
+        } 
+    }
+
+    // __________________________________________________________________________________________________
+
+    // USER FORM AFTER LOGIN
+    .User__form{
+        position: relative;
+        .User__info {
+            display: flex;
+            align-items: center;
+
+            padding-right: 30px;
+            .User__img{
+                width:30px;
+                height:30px;
+                border-radius: 15px;
+                cursor: pointer;
+            }
+            .User__name {
+                font-size: 14px;
+                padding-left: 10px;
+                color: white;
+            }
+            .Icon__dropdown {
+                color: white;
+            }
+        }
+        
+        .User__navigate{
+            position: absolute;
+            z-index:20;
+            background-color: #fbfbfb;
+            border: 2px solid #4d4d4d;
+            border-radius: 15px;
+            hr {
+                border: 0.5px solid #4d4d4d;
+            }
+            .Settings__link {
+                text-decoration: unset;
+                color: #4d4d4d;
+            }
+            .User__settings {
+                text-align: center;
+                margin: 10px;
+                font-size: 12px;
+                font-weight: 500;
+                color: #4d4d4d;
+                cursor: pointer;
+            }
         }
     }
-}
-.User-form.enable{
-    display: block !important;
-}
 
-#InfoShow{
-    display:block !important;
-}
-
-//_______________________________________________________________
-// FORGOT MODAL
-#ForgotModalenable{
-    height: 436px;
-    display:block !important;
-    .instructor{
-        font-size: 12px;
-        font-weight: 500;
-        text-align: center;
-        color: #808080;
-    }
-    .box-content{
-        height: 142px;
-        .inputform{
-            padding-top:35px;
-        }
-    }
-}
-#ModalForgot{
-    display:block !important;
 }

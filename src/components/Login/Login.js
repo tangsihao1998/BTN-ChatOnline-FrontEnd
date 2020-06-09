@@ -10,6 +10,10 @@ import client from '../../feathers';
 
 import { Link } from 'react-router-dom';
 
+// import material-UI
+import { IconButton } from '@material-ui/core';
+import { ArrowDropDown } from '@material-ui/icons';
+
 class Login extends Component {
 	// Constructor of Component
 	constructor(props) {
@@ -18,13 +22,14 @@ class Login extends Component {
 			infoshow: false,
 		};
 	}
-	
+
 	// USER-SETTINGS SHOW
 	HandleUserSetting = () => {
-		if (this.state.infoshow === false) {
-			this.setState({ infoshow: true });
-		} else {
+		const { infoshow } = this.state;
+		if (infoshow) {
 			this.setState({ infoshow: false });
+		} else {
+			this.setState({ infoshow: true });
 		}
 	};
 
@@ -47,38 +52,48 @@ class Login extends Component {
 		const { infoshow } = this.state;
 		//-----------------------------------------------------------
 		return (
-			<div>
+			<div className='AuthenComponent'>
 				{/* Content In NAVBAR before LOGIN */}
-				<div className={`Button__component ${currentUser && 'disable'}`}>
-					<Link className="Register" to='/authentication/register'>
-						Register
-					</Link>
-					<Link className="Login" to='/authentication/signin'>
-						Log In
-					</Link>
-				</div>
-
-				{/* Content In NAVBAR after LOGIN */}
-				<div className={`User-form ${currentUser && 'enable'}`}>
-					{currentUser && (
-						<img
-							src={process.env.PUBLIC_URL + currentUser.image}
-							className="userIMG"
-							alt="user-images"
-							onClick={this.HandleUserSetting}
-						/>
-					)}
-					<div id={`Info${(infoshow && 'Show') || ''}`} className="User-Info">
-						<div>
-							<Link to="/profile" className="User__settings">
-								Account setting
+				{ currentUser ? (
+					// Content In NAVBAR after LOGIN 
+					<div className='User__form'>	
+						<div className='User__info' onClick={this.HandleUserSetting}>
+							<img
+								src={process.env.PUBLIC_URL + '/images/user.png'}
+								className="User__img"
+								alt="user-images"
+							/>
+							<div className='User__name'>{currentUser.name}</div>
+							<IconButton edge="start" className="Icon__dropdown" color="inherit" aria-label="menu">
+								<ArrowDropDown />
+							</IconButton>
+						</div>
+						
+						{ infoshow ? (
+							<div className="User__navigate">
+								<div className="User__settings">
+									<Link className="Settings__link" to="/profile" >
+										Account setting
+									</Link>
+								</div>
+								<hr/>
+								<div className="User__settings" onClick={this.handleLogoutEvent}>
+									Logout
+								</div>
+							</div>): (<div/>) 
+						}
+					</div>
+					) : (
+						<div className='Button__component'>
+							<Link className="Register" to='/authentication/register'>
+								Register
+							</Link>
+							<Link className="Login" to='/authentication/signin'>
+								Log In
 							</Link>
 						</div>
-						<div className="User__logout" onClick={this.handleLogoutEvent}>
-							Logout
-						</div>
-					</div>
-				</div>
+					) 
+				}
 			</div>
 		);
 	}
@@ -86,7 +101,6 @@ class Login extends Component {
 
 const mapDispatchToProps = (dispatch) => ({
 	dispatch,
-	setCurrentUser: (currentUser) => dispatch(actions.setCurrentUser(currentUser)),
 	signOutUser: () => dispatch(actions.signOutUser()),
 });
 

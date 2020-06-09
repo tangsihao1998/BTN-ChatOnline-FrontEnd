@@ -81,37 +81,5 @@
         display: none;
       }
     }
-
-    .Header__Submenu {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      position: absolute;
-
-      background-color: white;
-      z-index: 100;
-      right: 10px;
-      top: 80%;
-
-      box-shadow: 0 0  10px rgba(0,0,0,.02);
-
-      border-radius: 10px;
-      @media #{$large_device} {
-        display: none;
-      }
-      @media #{$tablet_device} {
-        display: none;
-      }
-      @media #{$mid_device} {
-        display: none;
-      }
-
-      .Submenu__Link {
-        padding: 10px;
-        text-decoration: unset;
-        color: #2C2C2C;
-      }
-    }
   }
 }

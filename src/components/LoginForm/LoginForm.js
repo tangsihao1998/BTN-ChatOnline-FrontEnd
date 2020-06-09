@@ -5,6 +5,10 @@ import './LoginForm.scss';
 import { Link } from 'react-router-dom';
 import client from '../../feathers';
 
+// import redux
+import { connect } from 'react-redux';
+import actions from './../../redux/actions';
+
 class LoginForm extends Component {
   constructor(props) {
     super(props);
@@ -23,14 +27,16 @@ class LoginForm extends Component {
 	// Handle Log In Event
 	handleLogIn = async (e) => {
 		e.preventDefault();
-		const { setCurrentUser, setError } = this.props;
+		const { setCurrentUser, history } = this.props;
+    console.log("LoginForm -> handleLogIn -> this.props", this.props)
 		try {
 			const result = await client.authenticate({
 				strategy: 'local',
 				email: this.state.email,
 				password: this.state.password,
 			});
-			setCurrentUser(result.user);
+      setCurrentUser(result.user);
+      history.push('/');
 		} catch (err) {
 			if (err.code === 401) {
         // TODO: show error in login form
@@ -94,4 +100,9 @@ class LoginForm extends Component {
   }
 }
 
-export default LoginForm;
+const mapDispatchToProps = dispatch => ({
+  dispatch,
+  setCurrentUser: currentUser => dispatch(actions.setCurrentUser(currentUser)),
+});
+
+export default connect(null, mapDispatchToProps)(LoginForm);

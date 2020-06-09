@@ -12,6 +12,7 @@ import Footer from '../../components/Footer';
 import Profile from '../../components/Profile';
 import Introduction from '../../components/Introduction';
 import AuthenticationContainer from './../../components/AuthenticationContainer';
+import Contact from '../../components/Contact';
 
 
 class HomePage extends PureComponent {
@@ -26,6 +27,7 @@ class HomePage extends PureComponent {
 							<Route exact path="/" component={Introduction}/>
 							<Route exact path="/profile" component={Profile} />
 							<Route exact path="/authentication" component={AuthenticationContainer} />
+							<Route exact path="/contact" component={Contact}/>
 							{/* <Route exact path="/" component={Messaging} /> */}
 						</div>
 					</Switch>

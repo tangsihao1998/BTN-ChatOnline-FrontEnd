@@ -14,10 +14,11 @@ class Footer extends Component {
           <div className="Contact_Us">
             <h3 className="Label_Contactus">Contact Us</h3>
             <ul className="List_Student">
-              <li>16530 : Tăng Sĩ Hào</li>
-              <li>16530 : Lý Gia Lập</li>
-              <li>16530 : Phạm Viết Lực</li>
+              <li>1653023 : Tăng Sĩ Hào</li>
+              <li>1653043 : Lý Gia Lập</li>
+              <li>1653049 : Phạm Viết Lực</li>
             </ul>
+            <div className="Contact__email">Email: talkderteam@gmail.com</div>
           </div>
         </div>
         <div className="Footer_Bottom_Copyright">

@@ -19,24 +19,27 @@
 
         padding-bottom: 20px;
 
-        @media #{$mobile_device} {
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
         .About_TalkDer {
             margin-top: 20px;
             color: #C7C7C7;
             @media #{$mobile_device} {
+                width: 35%;
                 text-align: center;
             }
+            
             .TalkDer {
                 color: #C7C7C7;
                 font-size: 30px;
+                @media #{$mobile_device} {
+                    font-size: 12px;
+                }
             }
             .TalkDer_Description {
                 color: #C7C7C7;
                 font-size: 20px;
+                @media #{$mobile_device} {
+                    font-size: 9px;
+                }
             }
         }
         .Contact_Us {
@@ -46,8 +49,24 @@
                 color: #C7C7C7;
                 font-size: 30px;
                 text-align: center;
+                @media #{$mobile_device} {
+                    font-size: 12px;
+                }
             }
             .List_Student {
+                @media #{$mobile_device} {
+                    font-size: 10px;
+                }
+            }
+            .Contact__email {
+                width:100%;
+                text-align: right;
+
+                color: #C7C7C7;
+                font-size: 15px;
+                @media #{$mobile_device} {
+                    font-size: 8px;
+                }
             }
         }
     }

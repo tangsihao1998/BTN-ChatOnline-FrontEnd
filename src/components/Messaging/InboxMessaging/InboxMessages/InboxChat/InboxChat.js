@@ -1,8 +1,36 @@
 import React, { Component } from 'react'
 import './InboxChat.scss'
 
+import { connect } from 'react-redux';
+import { services } from './../../../../../feathers';
+
+import selectors from './../../../../../redux/selectors';
+
 class InboxChat extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            messagesArray: [],
+        };
+    }
+
+    async componentDidMount() {
+        await this.props.getMessages();
+        this.setState({
+            messagesArray: this.props.currentMessagesQuery,
+        });
+    }
+
+    renderMessage(message, currentUser) {
+        const isOutgoing = message.sender === currentUser._id;
+        return (
+            <div></div>
+        );
+    }
+
     render() {
+        const { currentUser } = this.props;
+        
         return (
             <div className="Inbox_Chat_Component">
                 <div class="msg_history">
@@ -56,4 +84,22 @@ class InboxChat extends Component {
     }
 }
 
-export default InboxChat
+const mapStateToProps = (state) => ({
+    state,
+    currentUser: selectors.getCurrentUser(state),
+    currentMessagesQuery: selectors.getCurrentMessagesQuery(state),
+}); 
+
+const mapDispatchToProps = (dispatch) => ({
+  dispatch,
+  getMessages: async () => {
+    await dispatch(services.messages.find({}));
+  },
+  getNextMessages: async (messageCount) => {
+      await dispatch(services.messages.find({
+          skip: messageCount,
+      }));
+  }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(InboxChat);

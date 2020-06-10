@@ -12,7 +12,7 @@
   padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
-
+  height: 900px;
   @media #{$large_device}{
     max-width: 1140px;
   }
@@ -21,6 +21,7 @@
   }
   @media #{$tablet_device}{
     max-width: 720px;
+    height: 780px;
   }
   @media #{$mobile_device}{
     flex-direction: column;

@@ -5,7 +5,6 @@
 
     .App__background {
         background-image: url('/png/banner.png');
-        height: 900px;
         
         background-size: 100% 100%;
         background-repeat: no-repeat;
@@ -15,10 +14,5 @@
           height: auto;
           background-size: cover;
         }
-        @media #{$tablet_device} {
-          height: 780px;
-          // background-size: cover;
-        }
-        
     }
 }

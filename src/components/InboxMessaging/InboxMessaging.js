@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import InboxMessages from './InboxMessages'
-import InboxPeople from './InboxPeople'
+import InboxMessages from '../InboxMessages'
+import InboxPeople from '../InboxPeople'
 // import Col from 'react-bootstrap/Col'
 import './InboxMessing.scss';
 

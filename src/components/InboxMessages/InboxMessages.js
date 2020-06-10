@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 // import Row from 'react-bootstrap/Row'
 // import Container from 'react-bootstrap/Container'
 // import Col from 'react-bootstrap/Col'
-import InboxChat from './InboxChat/InboxChat'
-import InboxSettings from './InboxSettings/InboxSettings'
+import InboxChat from '../InboxChat/InboxChat'
+import InboxSettings from '../InboxSettings/InboxSettings'
 import './InboxMessges.scss'
 
 class InboxMessages extends Component {

@@ -6,6 +6,12 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Modal, Fade, IconButton } from '@material-ui/core';
 import { Search, Add } from '@material-ui/icons';
 
+import { connect } from 'react-redux';
+import { services } from './../../feathers';
+
+import selectors from './../../redux/selectors';
+import actions from './../../redux/actions';
+
 import './AddFriendModal.scss';
 
 const useStyles = makeStyles((theme) => ({
@@ -128,4 +134,27 @@ class AddFriendModal extends Component {
   }
 }
 
-export default AddFriendModal;
+const mapStateToProps = (state) => ({
+    state,
+    currentUser: selectors.getCurrentUser(state),
+    currentRoomsQuery: selectors.getCurrentRoomsQuery(state),
+    roomTypeFilter: selectors.getRoomTypeFilter(state),
+});
+
+const mapDispatchToProps = (dispatch) => ({
+    dispatch,
+    findUsers: async (name) => {
+      const options = {
+        query: {
+          $or: [
+            { email: { $search: name }},
+            { name: {$search: name}}
+          ]
+        }
+      }
+
+      await dispatch(services.user.find(options));
+    },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddFriendModal);

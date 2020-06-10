@@ -28,9 +28,8 @@ class Header extends PureComponent {
 
   componentDidMount() {
     const { history } = this.props;
-    console.log("Header -> componentDidMount -> history", history)
     if(history.location.pathname === '/chat') {
-      this.setState({disable: false})
+      this.setState({ disable: false })
     }
     window.onscroll = () => {
       if(window.pageYOffset > 150) { 
@@ -74,14 +73,14 @@ class Header extends PureComponent {
     return (
       <React.Fragment>
         <header id={`${ (disable) ? '': 'unset__position' }`} className='HomePage__Header' >
-          <div className={`Header__content ${ (sticky && disable) ? 'content--sticky': 'content--background' }`} >
+          <div className={`Header__content ${sticky ? 'content--sticky': '' } ${disable ? '': 'content--background'}`} >
             {/* Logo */}
             <img className="Header__Logo" src={process.env.PUBLIC_URL + "/png/Logo-1.png"} alt="Logo" onClick={this.ImageClick}></img>
             {/* Link */}
             <div className="Header__navigation">
               <Link className="Header__link" to='/'>Trang Chủ</Link>
-              <Link className="Header__link" to='/about'>Về Chúng Tôi</Link>
               <Link className="Header__link" to='/contact'>Liên Hệ</Link>
+              {currentUser && <Link className="Header__link" to='/chat'>Chat</Link>}
             </div>
 
             {/* check IF Đăng Nhập or not */}

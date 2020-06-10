@@ -1,315 +1,94 @@
 @import './../../constant/custom-styles.scss';
 @import './../../constant/responsive.scss';
 
-// Login Form before LOGIN
-.LoginForm{
-    margin-right:24px;
-
-    .Register {
-        @include wordfont;
-        width: 59px;
-        height: 22px;
-        font-size: 14px;
-        // background-color: white;
-        background: transparent;
-        border: white;
-        color: white;
+.AuthenComponent {
+    @media #{$mobile_device} {
+        display: none;
+    }
+    // Login Form before LOGIN
+    .Button__component{
         margin-right: 24px;
-        
-        text-decoration: unset;
-
-        @media #{$mobile_device} {
-            display: none;
-        }
-    }
-    .Login {
-        @include wordfont;
-        padding: 10px 40px;
-
-        color: #fff;
-
-        background-color: #42B3FA;
-
-        font-weight: 500;
-        font-size: 14px;
-
-        text-decoration: unset;
-
-        border: 1px solid transparent;
-        -webkit-border-radius: 4px;
-        -moz-border-radius: 4px;
-        border-radius: 4px;
-
-        @media #{$mobile_device} {
-            display: none;
-        }
-    } 
-}
-
-.Login--disable{
-    display:none;
-}
-// __________________________________________________________________________________________________
-
-// USER FORM AFTER LOGIN
-.User-form{
-    display:none;
-    position: relative;
-    .userIMG{
-        width:30px;
-        height:30px;
-        border-radius: 15px;
-        margin: 5px 25px 0px;
-        cursor: pointer;
-    }
-    .User-Info{
-        display:none;
-        background-color: #fbfbfb;
-        width: 181px;
-        height: 72px;
-        position: absolute;
-        right: 25px;
-        top: 50px;
-        z-index:20;
-        .User__settings {
+        .Register {
+            @include wordfont;
+            width: 59px;
+            height: 22px;
+            font-size: 14px;
+            // background-color: white;
+            background: transparent;
+            border: white;
+            color: white;
+            margin-right: 24px;
+            
             text-decoration: unset;
-            color: #4d4d4d;
         }
-        div{
-            width:100%;
-            height:36px;
-            border: 1px solid #eaeaea;
-            padding-top:8px;
-            padding-left:13px;
-            font-size: 12px;
+        .Login {
+            @include wordfont;
+            padding: 10px 40px;
+
+            color: #fff;
+
+            background-color: #42B3FA;
+
             font-weight: 500;
-            color: #4d4d4d;
-            cursor: pointer;
-        }
-    }
-}
-.User-form.enable{
-    display: block !important;
-}
+            font-size: 14px;
 
-#InfoShow{
-    display:block !important;
-}
+            text-decoration: unset;
 
-
-// __________________________________________________________________________________________________
-/* The Modal (background) */
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
-
-// ________________________________________________________________________
-// MODAL CONTENT (STYLE OF MODAL AND ALL THE FORM IN MODAL
-.modal-content {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    box-shadow: 0 14px 30px 0 rgba(0, 0, 0, 0.14);
-    background-color: #fefefe;
-    margin: 20px 30%;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 555px; /* Could be more or less, depending on screen size */
-    height: 568px;
-    @include wordfont;
-
-    /* The Close Button */
-    .close {
-        color: #aaa;
-        float: right;
-        font-size: 28px;
-        font-weight: bold;
-        margin-top: -20px;
+            border: 1px solid transparent;
+            -webkit-border-radius: 4px;
+            -moz-border-radius: 4px;
+            border-radius: 4px;
+        } 
     }
 
-    .close:hover,
-    .close:focus {
-        color: black;
-        text-decoration: none;
-        cursor: pointer;
-    } 
-    .title{
-        font-size:32px;
-        padding-top: 25px;
-        text-align: center;
-        font-weight: bold;
-        color:#202124;
-    }
-    // Modal Alert
-    .box-content{
-        display:flex;
-        flex-direction: column;
-        height:293px;
-        .Alert{
-            font-size: 12px;
-            font-weight: 500;
-            color: #f63f45;
-            text-align: center;
-            // display:none;
-        }
-        //inputform
-        .inputform{
-            padding: 25px 60px 0px;
-            div{
-                width: 45px;
-                height:18px;
-                font-size:12px;
-                font-weight: bold;
-                margin-bottom: 8px;
-                color:#202124;
+    // __________________________________________________________________________________________________
+
+    // USER FORM AFTER LOGIN
+    .User__form{
+        position: relative;
+        .User__info {
+            display: flex;
+            align-items: center;
+
+            padding-right: 30px;
+            .User__img{
+                width:30px;
+                height:30px;
+                border-radius: 15px;
+                cursor: pointer;
             }
-            input{
-                padding-left:25px;
-                width: 395px;
-                height: 46px;
-                border: solid 1px #b7b7b7;
-                background-color: #f6f6f6;
+            .User__name {
+                font-size: 14px;
+                padding-left: 10px;
+                color: white;
+            }
+            .Icon__dropdown {
+                color: white;
             }
         }
-        .otherform{
-            display:flex;
-            padding: 26px 60px 0px;
-            height: 82px;
-            font-size:14px;
-            .remembercheckbox{
-                width: 14px;
-                height: 14px;
-                color:white;
-                background-color: #ffa15f;
-                margin-top:5px;
-                margin-right:6px;    
+        
+        .User__navigate{
+            position: absolute;
+            z-index:20;
+            background-color: #fbfbfb;
+            border: 2px solid #4d4d4d;
+            border-radius: 15px;
+            hr {
+                border: 0.5px solid #4d4d4d;
             }
-            label{
-                margin-right:91px;
-                color:#4d4d4d;
+            .Settings__link {
+                text-decoration: unset;
+                color: #4d4d4d;
             }
-            div{
-                font-weight: 600;
-                color:#4d4d4d;
+            .User__settings {
+                text-align: center;
+                margin: 10px;
+                font-size: 12px;
+                font-weight: 500;
+                color: #4d4d4d;
                 cursor: pointer;
             }
         }
     }
-  
-    button{
-        margin: 0px 60px 67px;
-        width: 395px;
-        height:50px;
-        box-shadow: 0 6px 18px 0 rgba(0, 0, 0, 0.12);
-        background-color:  #ffa15f;
-        color:white;
-        border:none;
-    }
-    hr{
-        width: 551px;
-        margin-left: -20px;
-        color: #ededed;
-    }
-    .alert{
-        font-size:14px;
-        font-weight: 500;
-        color:#4d4d4d;
-        text-align: center;
-        display: flex;
-        justify-content: center;
-        padding: 10px 0px;
-        .alert-button{
-            margin-left:5.5px;
-            color:#ff7413;
-            font-size:14px;
-            font-weight: bold;
-            border-bottom: 1px solid #ff7413;
-            cursor: pointer;
-        }
-    }
-}
 
-// ________________________________________________________________________
-// REGISTER MODAL
-#RegisterModalenable{
-    margin: 20px 30%;
-    max-height: 95vh;
-    // height: 703px;
-    display:block !important;
-    overflow: auto;
-    .box-content{
-        height:350px;
-    }
-    .term{
-        text-align: center;
-        font-size:14px;
-        color:#202124;
-        padding-bottom: 50px;
-        span{
-            font-weight: bold;
-            color:#ff7413;
-            border-bottom: 1px solid #ff7413;
-            cursor: pointer;
-        }
-    }
-    .inputform{
-        height:99px;
-        padding-top:10px;
-        .Alert{
-            text-align: left;
-        }
-    }
-}
-#ModalRegister{
-    display:block !important;
-}
-
-//_______________________________________________________________
-// FORGOT MODAL
-#ForgotModalenable{
-    height: 436px;
-    display:block !important;
-    .instructor{
-        font-size: 12px;
-        font-weight: 500;
-        text-align: center;
-        color: #808080;
-    }
-    .box-content{
-        height: 142px;
-        .inputform{
-            padding-top:35px;
-        }
-    }
-}
-#ModalForgot{
-    display:block !important;
-}
-
-//________________________________________________________________________
-// LOGIN MODAL
-#LoginModalenable{
-    display:block !important;
-} 
-
-#ModalLogin{
-    display:block !important;
-}
-
-// _______________________________________________________________________
-// ERROR FORM WHEN INPUT WRONG OR REGISTER WRONG
-#ErrorForm{
-    border: solid 1px #f63f45;
-    background-color: #f6d9d8;
 }

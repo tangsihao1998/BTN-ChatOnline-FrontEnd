@@ -10,6 +10,8 @@ import Axios from './axios';
 // import Redux
 import { connect } from 'react-redux';
 import actions from './redux/actions';
+import selectors from './redux/selectors';
+
 // import components
 import HomePage from './pages/HomePage';
 import client from './feathers';
@@ -38,15 +40,17 @@ class App extends Component {
   }
 
 
-	componentDidMount() {
+	async componentDidMount() {
 		// Try to authenticate with the JWT stored in localStorage
-		client.authenticate().catch(() => this.setState({ login: null }));
-
-		// if (localStorage.jwtToken) {
-		// 	Axios.setAuthToken(localStorage.jwtToken);
-		// 	const decoded = jwt_decode(localStorage.jwtToken);
-		// 	this.props.setCurrentUser(decoded);
-		// }
+		// client.authenticate().catch(() => this.setState({ login: null }));
+		try {
+			// First try to log in with an existing JWT
+			const result = await client.reAuthenticate();
+			this.props.setCurrentUser(result.user);
+		} catch (error) {
+			// If cannot reauthenticate
+			this.setState({ login: null });
+		}
 	}
 
 	render() {
@@ -70,7 +74,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const mapStateToProps = (state) => ({
-	// currentUser: selectors.getCurrentUser(state),
+	currentUser: selectors.getCurrentUser(state),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

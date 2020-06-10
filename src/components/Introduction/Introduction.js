@@ -1,13 +1,10 @@
-import React, { Component } from 'react'
+import React from 'react'
 
 import './Introduction.scss';
 
 import { Link } from 'react-router-dom';
 
-class Introduction extends Component {
-
-
-  render() {
+const Introduction = () => {
     return (
       <div className='Introduction'>
         <div className='Introduction__navigation'>
@@ -19,7 +16,6 @@ class Introduction extends Component {
         </div>
       </div>
     )
-  }
 }
 
 export default Introduction;

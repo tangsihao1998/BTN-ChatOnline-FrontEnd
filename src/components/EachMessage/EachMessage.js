@@ -21,26 +21,26 @@ class EachMessage extends Component {
             //  {/* Message của người khác */}
             <div className="Incoming__message">
               <img className="User__Image" src={process.env.PUBLIC_URL + '/images/user.png'} alt="Incoming User"></img>
-              <div class="Message__incoming">
-                  <div class="Message">
+              <div className="Message__incoming">
+                  <div className="Message">
                       {/* Gọi message thay thế trong p */}
                       <p>{}Test which is a new approach to have all
                           solutions</p>
                           {/* Date and time */}
-                      <span class="Time__date"> {} 11:01 AM    |    {}June 9</span>
+                      <span className="Time__date"> {} 11:01 AM    |    {}June 9</span>
                   </div>
               </div>
             </div>
           ):
           (
             // {/* Message của mình */}
-            <div class="Outgoing__message">
-              <div class="Message__send">
+            <div className="Outgoing__message">
+              <div className="Message__send">
                 {/* Gọi message thay thế trong p */}
                 <p>{}Test which is a new approach to have all
                 solutions</p>
                   {/* Date and time */}
-                <span class="Time__date"> {}11:01 AM    |    {}June 9</span> 
+                <span className="Time__date"> {}11:01 AM    |    {}June 9</span> 
               </div>
             </div>
           )

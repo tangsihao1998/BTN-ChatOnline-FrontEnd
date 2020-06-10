@@ -65,7 +65,6 @@ class Header extends PureComponent {
     const { sticky, dropdown } = this.state;
     const { currentUser } = this.props;
 
-    // console.log(this.props.state);
     return (
       <React.Fragment>
         <header className="HomePage__Header">

@@ -56,16 +56,23 @@ class RegisterForm extends Component {
 		e.preventDefault();
     try {
       const { username, email, password, phone } = this.state;
-      this.props.onCreate(username, email, password, phone);
+      await this.props.onCreate(username, email, password, phone);
       alert('Create Success, Redirect to Login')
       this.props.history.push('/authentication/signin');
     } catch (err) {
-      console.log("RegisterForm -> handleRegister -> err", err)
-      if (err.code === 401) {
-        // TODO: show error in login form
-        this.setState({ errors: 'Wrong email/password combination'})
-      } else {
-        this.setState({ errors: 'An unknown error has occured'})
+      switch(err.code) {
+        case 401: {
+          this.setState({ errors: 'Wrong email/password combination'})
+          break;
+        };
+        case 409: {
+          this.setState({ errors: 'Email exist'})
+          break;
+        };
+        default: {
+          this.setState({ errors: 'An unknown error has occured'})
+          break;
+        };
       }
     }
   };
@@ -73,7 +80,6 @@ class RegisterForm extends Component {
   render() {
     const { username, phone, email, password, repassword, errors } = this.state;
 
-    console.log(this.props)
     return (
       <React.Fragment>
         <div className="RegisterForm">
@@ -162,8 +168,8 @@ class RegisterForm extends Component {
 
 const mapDispatchToProps = (dispatch) => ({
   dispatch,
-  onCreate: (name, email, password, phone) => {
-    dispatch(services.users.create({
+  onCreate: async (name, email, password, phone) => {
+    await dispatch(services.users.create({
       name,
       email,
       password,

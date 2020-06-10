@@ -4,7 +4,7 @@ import './SelectedOptions.scss';
 
 // import material-UI
 import { IconButton } from '@material-ui/core';
-import { Group, Person, Shuffle} from '@material-ui/icons';
+import { Home, Group, Person, Shuffle} from '@material-ui/icons';
 
 class SelectedOptions extends Component {
 
@@ -24,6 +24,10 @@ class SelectedOptions extends Component {
         return (
             <div className="Selected_Options">
                 <div className="Group__icon"> 
+                    {/* import button chat with a friend */}
+                    <IconButton edge="start" className="Options__icon" color="primary" aria-label="Person" onClick={this.personType}>
+                        <Home />
+                    </IconButton>
                     {/* import button chat with a friend */}
                     <IconButton edge="start" className="Options__icon" color="primary" aria-label="Person" onClick={this.personType}>
                         <Person />

@@ -3,13 +3,12 @@ import React, { Component } from 'react'
 import './LoginForm.scss';
 
 import { Link } from 'react-router-dom';
-import {client} from '../../feathers';
 
 // import redux
 import { connect } from 'react-redux';
 import actions from './../../redux/actions';
 
-import { services } from './../../feathers'; 
+import { client, services } from './../../feathers'; 
 
 class LoginForm extends Component {
   constructor(props) {
@@ -31,16 +30,17 @@ class LoginForm extends Component {
 		e.preventDefault();
 		const { setCurrentUser, history } = this.props;
 		try {
-      const {email, password} = this.state 
-      const strategy = 'local'; 
-			// const result = await client.authenticate({ 
-			// 	strategy: 'local', 
-			// 	email: this.state.email, 
-			// 	password: this.state.password, 
-      // }); 
-      await this.props.onLogin(strategy,email,password); 
+			const result = await client.authenticate({ 
+				strategy: 'local', 
+				email: this.state.email, 
+				password: this.state.password, 
+      }); 
+      // const { email, password } = this.state;
+      // const strategy = 'local'; 
+      // const res = await this.props.onLogin(strategy,email,password); 
+      // console.log("LoginForm -> handleLogIn -> res", res)
        
-      // setCurrentUser(result.user); 
+      setCurrentUser(result.user); 
       history.push('/chat');
 		} catch (err) {
 			if (err.code === 401) {
@@ -107,13 +107,13 @@ class LoginForm extends Component {
 const mapDispatchToProps = dispatch => ({
   dispatch,
   setCurrentUser: currentUser => dispatch(actions.setCurrentUser(currentUser)),
-  onLogin: async (strategy, email, password) => { 
-    await dispatch(services.authentication.create({ 
-      strategy, 
-      email, 
-      password, 
-    })) 
-  } 
+  // onLogin: async (strategy, email, password) => { 
+  //   await dispatch(services.authentication.create({ 
+  //     strategy, 
+  //     email, 
+  //     password, 
+  //   })) 
+  // } 
 });
 
 export default connect(null, mapDispatchToProps)(LoginForm);

@@ -1,5 +1,6 @@
 .Incoming__message {
   display: flex;
+  padding-bottom: 15px;
   .User__Image {
     display: inline-block;
     width: 30px;
@@ -34,7 +35,7 @@
 
 .Outgoing__message {
   overflow: hidden;
-  margin: 26px 0 26px;
+  padding-bottom: 15px;
   padding-right: 10px;
   .Message__send {
     display: flex;

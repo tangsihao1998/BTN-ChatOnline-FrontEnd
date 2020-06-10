@@ -5,7 +5,3 @@ export const setCurrentUser = currentUser => dispatch => {
 export const signOutUser = () => dispatch => {
   dispatch({ type: 'SIGN_OUT_USER' });
 };
-
-export const setError = error => dispatch => {
-  dispatch({ type: 'SET_ERRORS', payload: { error } });
-};

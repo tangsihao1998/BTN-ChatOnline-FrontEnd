@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import './InboxChat.scss'
 
 import { connect } from 'react-redux';
-import { services } from './../../../../../feathers';
+import { services } from '../../../../feathers';
 
-import selectors from './../../../../../redux/selectors';
+import selectors from '../../../../redux/selectors';
 
 class InboxChat extends Component {
     constructor(props) {

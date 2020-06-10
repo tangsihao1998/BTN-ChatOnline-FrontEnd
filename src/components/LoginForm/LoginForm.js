@@ -28,7 +28,6 @@ class LoginForm extends Component {
 	handleLogIn = async (e) => {
 		e.preventDefault();
 		const { setCurrentUser, history } = this.props;
-    console.log("LoginForm -> handleLogIn -> this.props", this.props)
 		try {
 			const result = await client.authenticate({
 				strategy: 'local',

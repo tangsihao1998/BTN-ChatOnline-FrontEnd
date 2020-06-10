@@ -2,12 +2,12 @@
 @import './../../constant/responsive.scss';
 
 .AuthenComponent {
+    @media #{$mobile_device} {
+        display: none;
+    }
     // Login Form before LOGIN
     .Button__component{
         margin-right: 24px;
-        @media #{$mobile_device} {
-            display: none;
-        }
         .Register {
             @include wordfont;
             width: 59px;

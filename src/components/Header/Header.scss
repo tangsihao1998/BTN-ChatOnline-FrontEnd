@@ -39,6 +39,29 @@
       background: #2C2C2C;
     }
 
+    .User__info {
+      display: none;
+      
+      @media #{$mobile_device} {
+        display: flex;
+        align-items: center;
+      }
+      .User__img{
+          width:30px;
+          height:30px;
+          border-radius: 15px;
+          cursor: pointer;
+      }
+      .User__name {
+          font-size: 14px;
+          padding-left: 10px;
+          color: white;
+      }
+      .Icon__dropdown {
+          color: white;
+      }
+    }
+
     .Header__Logo {
       height: 100%;
       width: 20%;
@@ -71,14 +94,9 @@
     }
 
     .Header__MenuIcon {
-      @media #{$large_device} {
-        display: none;
-      }
-      @media #{$tablet_device} {
-        display: none;
-      }
-      @media #{$mid_device} {
-        display: none;
+      display: none;
+      @media #{$mobile_device} {
+        display: block;
       }
     }
   }

@@ -38,8 +38,6 @@ class Login extends Component {
 		e.preventDefault();
 		this.setState({ infoshow: false });
 		client.logout();
-		// localStorage.removeItem('jwtToken');
-		// Axios.setAuthToken(false);
 		this.props.signOutUser();
 		this.props.history.push('/');
 	};
@@ -73,12 +71,12 @@ class Login extends Component {
 							<div className="User__navigate">
 								<div className="User__settings">
 									<Link className="Settings__link" to="/profile" >
-										Account setting
+										Thông Tin Tài Khoản
 									</Link>
 								</div>
 								<hr/>
 								<div className="User__settings" onClick={this.handleLogoutEvent}>
-									Logout
+									Đăng Xuất
 								</div>
 							</div>): (<div/>) 
 						}

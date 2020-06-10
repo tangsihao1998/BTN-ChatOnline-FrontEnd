@@ -73,7 +73,7 @@ class Header extends PureComponent {
 
     return (
       <React.Fragment>
-        <header className="HomePage__Header">
+        <header id={`${ (disable) ? '': 'unset__position' }`} className='HomePage__Header' >
           <div className={`Header__content ${ (sticky && disable) ? 'content--sticky': 'content--background' }`} >
             {/* Logo */}
             <img className="Header__Logo" src={process.env.PUBLIC_URL + "/png/Logo-1.png"} alt="Logo" onClick={this.ImageClick}></img>

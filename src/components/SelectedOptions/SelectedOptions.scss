@@ -1,12 +1,18 @@
 .Selected_Options {
   display: flex;
   justify-content: center;
-  align-items: center;
-  
-  height: 100px;
-  .Options__icon {
-    color: white;
-    background-color: black;
-    
+  height: 80px;
+  width: 100%;
+  background-color: darkgray;
+  .Group__icon {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+    width: 50%;
+    .Options__icon {
+      color: white;
+      background-color: black; 
+    }
   }
 }

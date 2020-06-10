@@ -2,19 +2,17 @@ import React, { Component } from 'react'
 import InboxMessages from '../InboxMessages'
 import InboxPeople from '../InboxPeople'
 // import Col from 'react-bootstrap/Col'
-import './InboxMessing.scss';
-
-
+import './InboxMessaging.scss';
 
 class InboxMessaging extends Component {
     render() {
         return (
-            <div className="Messaging__Inbox">
-                <div className="Inbox__People">
-                    <InboxPeople></InboxPeople>
+            <div className="Message__container">
+                <div className="List__People">
+                    <InboxPeople />
                 </div>
-                <div className="Inbox__Messages">
-                    <InboxMessages></InboxMessages>
+                <div className="Container__Messages">
+                    <InboxMessages />
                 </div>
             </div>
         )

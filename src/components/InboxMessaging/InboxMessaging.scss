@@ -1,14 +1,14 @@
 
-.Messaging__Inbox {
+.Message__container {
     display: flex;
     height: 100%;
-    .Inbox__People {
+    .List__People {
         border-style: solid;
         border-width: 1px;
         border-color: #c4c4c4;
         width: 25%;
     }
-    .Inbox__Messages {
+    .Container__Messages {
         border-top: solid;
         border-width: 1px;
         border-color: hsl(0, 0%, 77%);

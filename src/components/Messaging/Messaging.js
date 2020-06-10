@@ -9,12 +9,10 @@ import './Messaging.scss'
 class Messaging extends Component {
     render() {
         return (
-            // <React.Fragment>
-                <div className="Messaging" style={{maxWidth: '100%', height: '100%'}}>
-                    <SelectedOptions />
-                    <InboxMessaging />
-                </div>
-            // </React.Fragment>
+            <div className="Messaging" style={{maxWidth: '100%', height: '100%'}}>
+                <SelectedOptions />
+                <InboxMessaging />
+            </div>
         )
     }
 }

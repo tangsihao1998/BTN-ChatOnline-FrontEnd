@@ -10,13 +10,18 @@ import actions from './../../redux/actions';
 
 // import components
 import ChatRoom from './../ChatRoom';
+import AddFriendModal from './../AddFriendModal';
+// import material-UI
+import { IconButton } from '@material-ui/core';
+import { PersonAdd, GroupAdd } from '@material-ui/icons';
 
 class InboxPeople extends Component {
     constructor(props) {
         super(props);
         this.state = {
             roomFilter: null,
-            rooms: []
+            rooms: [],
+            addFriendModal: false,
         };
     }
 
@@ -33,11 +38,46 @@ class InboxPeople extends Component {
         this.props.setRoomId(roomId);
     }
 
+    // Open and close Add friend modal
+    openAddFriendModal = (e) => {
+        e.preventDefault();
+        this.setState({addFriendModal: true})
+    }
+
+    handleClose = () => {
+        this.setState({addFriendModal: false})
+    };
+
+    // Open and close add group modal
+    addGroupToCreateRoom = (e) => {
+        e.preventDefault();
+    }
+
     render() {
-        const { rooms } = this.state;
+        const { rooms, addFriendModal } = this.state;
         return (
             <div className="List__Container">
-                <div className="Container__Title"></div>
+                <AddFriendModal open={addFriendModal} handleClose={this.handleClose}/>
+                <div className="Container__Title">
+                    <IconButton
+						edge="start"
+						className="Icon__add"
+						color="primary"
+						aria-label="Person"
+						onClick={this.openAddFriendModal}
+					>
+						<PersonAdd />
+					</IconButton>
+                    <IconButton
+						edge="start"
+						className="Icon__add"
+						color="primary"
+						aria-label="Person"
+						onClick={this.addGroupToCreateRoom}
+					>
+						<GroupAdd />
+					</IconButton>
+                </div>
                 <div className="List__Room">
                     {
                         rooms.map((room, i) => {

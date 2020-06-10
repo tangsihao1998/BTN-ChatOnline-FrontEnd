@@ -2,6 +2,8 @@
   display: flex;
   flex-direction: column;
 
+ 
+
   .Container__Title {
     box-sizing: border-box;
     height: 15%;
@@ -17,4 +19,13 @@
     display: flex;
     flex-direction: column;
   }
+}
+
+.Modal__addFriend {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  height: 50%;
+  background: white;
 }

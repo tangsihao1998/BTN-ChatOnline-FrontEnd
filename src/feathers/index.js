@@ -15,7 +15,7 @@ client.configure(
 );
 
 // import Feathers Reduxify
-const services = reduxifyServices(client, ['users', 'messages', 'rooms']);
+const services = reduxifyServices(client, ['users', 'messages', 'rooms', 'authentication']);
 
 export {
 	services,

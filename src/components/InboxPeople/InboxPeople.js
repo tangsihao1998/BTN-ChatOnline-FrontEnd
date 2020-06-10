@@ -11,6 +11,7 @@ import actions from './../../redux/actions';
 // import components
 import ChatRoom from './../ChatRoom';
 import AddFriendModal from './../AddFriendModal';
+import AddGroupModal from './../AddGroupModal';
 // import material-UI
 import { IconButton } from '@material-ui/core';
 import { PersonAdd, GroupAdd } from '@material-ui/icons';
@@ -22,6 +23,7 @@ class InboxPeople extends Component {
             roomFilter: null,
             rooms: [],
             addFriendModal: false,
+            addGroupModal: false,
         };
     }
 
@@ -49,15 +51,22 @@ class InboxPeople extends Component {
     };
 
     // Open and close add group modal
-    addGroupToCreateRoom = (e) => {
+    openAddGroupModal = (e) => {
         e.preventDefault();
+        this.setState({addGroupModal: true})
     }
 
+    handleCloseGroupModal = () => {
+        this.setState({addGroupModal: false})
+    };
+
     render() {
-        const { rooms, addFriendModal } = this.state;
+        const { rooms, addFriendModal, addGroupModal } = this.state;
         return (
             <div className="List__Container">
                 <AddFriendModal open={addFriendModal} handleClose={this.handleClose}/>
+                <AddGroupModal open={addGroupModal} handleClose={this.handleCloseGroupModal}/>
+                
                 <div className="Container__Title">
                     <IconButton
 						edge="start"
@@ -73,7 +82,7 @@ class InboxPeople extends Component {
 						className="Icon__add"
 						color="primary"
 						aria-label="Person"
-						onClick={this.addGroupToCreateRoom}
+						onClick={this.openAddGroupModal}
 					>
 						<GroupAdd />
 					</IconButton>

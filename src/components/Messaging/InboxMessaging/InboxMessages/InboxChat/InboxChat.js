@@ -10,14 +10,14 @@ class InboxChat extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            messagesArray: [],
+            messages: [],
         };
     }
 
     async componentDidMount() {
-        await this.props.getMessages();
+        // await this.props.getMessages(roomId);
         this.setState({
-            messagesArray: this.props.currentMessagesQuery,
+            messages: this.props.currentMessagesQuery,
         });
     }
 
@@ -92,12 +92,19 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   dispatch,
-  getMessages: async () => {
-    await dispatch(services.messages.find({}));
+  getMessages: async (roomId) => {
+    await dispatch(services.messages.find({
+        query: {
+            inRoom: roomId,
+        },
+    }));
   },
-  getNextMessages: async (messageCount) => {
+  getNextMessages: async (roomId, messageCount) => {
       await dispatch(services.messages.find({
           skip: messageCount,
+          query: {
+              inRoom: roomId,
+          },
       }));
   }
 });

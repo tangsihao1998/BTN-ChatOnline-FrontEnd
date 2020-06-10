@@ -3,7 +3,9 @@ import React, { Component } from 'react'
 import './RegisterForm.scss';
 
 import { Link } from 'react-router-dom';
-import client from '../../feathers';
+
+import { connect } from 'react-redux';
+import { services } from './../../feathers';
 
 class RegisterForm extends Component {
   constructor(props) {
@@ -26,7 +28,7 @@ class RegisterForm extends Component {
 
   // Validate
   handleCheckRegister = () => {
-    const {username, password, repassword} = this.state
+    const {username, password, repassword} = this.state;
     const format = /^[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/;
     if(username.length <= 6 || username.match(format) || username.length > 50 ) {
       this.setState({
@@ -52,31 +54,26 @@ class RegisterForm extends Component {
   	// Handle Register Event
 	handleRegister = async (e) => {
 		e.preventDefault();
-		// const { setCurrentUser, setError } = this.props;
     try {
-      await client.service('users').create({
-        name: this.state.username, 
-        email: this.state.email, 
-        password: this.state.password, 
-        phone: this.state.phone
-      }).then(() => {
-        alert('Create Success, Redirect to Login')
-        this.props.history.push('/authentication/signin');
-      })
+      const { username, email, password, phone } = this.state;
+      this.props.onCreate(username, email, password, phone);
+      alert('Create Success, Redirect to Login')
+      this.props.history.push('/authentication/signin');
     } catch (err) {
       console.log("RegisterForm -> handleRegister -> err", err)
-      // if (err.code === 401) {
-      //   // TODO: show error in login form
-      //   this.setState({ errors: 'Wrong email/password combination'})
-      // } else {
-      //   this.setState({ errors: 'An unknown error has occured'})
-      // }
+      if (err.code === 401) {
+        // TODO: show error in login form
+        this.setState({ errors: 'Wrong email/password combination'})
+      } else {
+        this.setState({ errors: 'An unknown error has occured'})
+      }
     }
   };
   
   render() {
     const { username, phone, email, password, repassword, errors } = this.state;
 
+    console.log(this.props)
     return (
       <React.Fragment>
         <div className="RegisterForm">
@@ -163,4 +160,16 @@ class RegisterForm extends Component {
   }
 }
 
-export default RegisterForm;
+const mapDispatchToProps = (dispatch) => ({
+  dispatch,
+  onCreate: (name, email, password, phone) => {
+    dispatch(services.users.create({
+      name,
+      email,
+      password,
+      phone,
+    }));
+  }
+});
+
+export default connect(null, mapDispatchToProps)(RegisterForm);

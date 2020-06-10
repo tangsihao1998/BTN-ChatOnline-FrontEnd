@@ -1,5 +1,4 @@
 import { combineReducers } from 'redux';
-
 // initialState
 import initialState from './../initialState';
 
@@ -7,6 +6,11 @@ import initialState from './../initialState';
 import authReducer from './AuthReducer';
 
 // export State
-export default combineReducers({
-	auth: authReducer(initialState.auth),
-});
+export default function(services) {
+	return combineReducers({
+		auth: authReducer(initialState.auth),
+		user: services.users.reducer,
+		messages: services.messages.reducer,
+		rooms: services.rooms.reducer,
+	});
+} 

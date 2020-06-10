@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import './LoginForm.scss';
 
 import { Link } from 'react-router-dom';
-import client from '../../feathers';
+import {client} from '../../feathers';
 
 // import redux
 import { connect } from 'react-redux';
@@ -48,7 +48,6 @@ class LoginForm extends Component {
   
   render() {
     const { password, email, errors } = this.state;
-
     return (
       <div className="LoginForm">
 

@@ -11,7 +11,7 @@ import { connect } from 'react-redux';
 import selectors from './../../redux/selectors';
 import actions from './../../redux/actions';
 
-import client from './../../feathers';
+import {client} from './../../feathers';
 // import components
 import Login from './../Login';
 import HeaderDropDownItem from './../HeaderDropDownItem';
@@ -64,6 +64,8 @@ class Header extends PureComponent {
   render() {
     const { sticky, dropdown } = this.state;
     const { currentUser } = this.props;
+
+    // console.log(this.props.state);
     return (
       <React.Fragment>
         <header className="HomePage__Header">
@@ -109,6 +111,7 @@ class Header extends PureComponent {
 }
 
 const mapStateToProps = (state) => ({
+  state,
 	currentUser: selectors.getCurrentUser(state),
 });
 

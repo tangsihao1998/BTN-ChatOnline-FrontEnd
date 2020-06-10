@@ -1,9 +1,8 @@
 import io from 'socket.io-client';
 import feathers from '@feathersjs/client';
-import { SOCKET_IO_URLS } from '../constant/urls';
+import reduxifyServices from 'feathers-redux';
 
-// import reduxifyServices, { getServicesStatus } from 'feathers-reduxify-services';
-// import reduxifyAuthentication from 'feathers-reduxify-authentication';
+import { SOCKET_IO_URLS } from '../constant/urls';
 
 const socket = io(SOCKET_IO_URLS);
 const client = feathers();
@@ -15,4 +14,10 @@ client.configure(
 	})
 );
 
-export default client;
+// import Feathers Reduxify
+const services = reduxifyServices(client, ['users', 'messages', 'rooms']);
+
+export {
+	services,
+	client,
+};

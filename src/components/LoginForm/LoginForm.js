@@ -35,7 +35,7 @@ class LoginForm extends Component {
 				password: this.state.password,
 			});
       setCurrentUser(result.user);
-      history.push('/');
+      history.push('/chat');
 		} catch (err) {
 			if (err.code === 401) {
         // TODO: show error in login form

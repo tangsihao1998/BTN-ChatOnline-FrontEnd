@@ -6,13 +6,13 @@ import './HomePage.scss';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 // import components
-// import Messaging from '../../components/Messaging';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import Profile from '../../components/Profile';
 import Introduction from '../../components/Introduction';
 import AuthenticationContainer from './../../components/AuthenticationContainer';
 import Contact from '../../components/Contact';
+import Messaging from '../../components/Messaging';
 
 class HomePage extends PureComponent {
 	render() {
@@ -27,8 +27,7 @@ class HomePage extends PureComponent {
 							<Route path="/authentication" component={AuthenticationContainer} />
 							<Route exact path="/profile" component={Profile} />
 							<Route exact path="/contact" component={Contact}/>
-
-							{/* <Route exact path="/" component={Messaging} /> */}
+							<Route exact path="/chat" component={Messaging} />
 						</div>
 					</Switch>
 					{/* FOOTER */}

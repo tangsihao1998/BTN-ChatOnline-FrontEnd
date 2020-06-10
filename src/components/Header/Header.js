@@ -22,10 +22,16 @@ class Header extends PureComponent {
     this.state = {
       sticky: false,
       dropdown: false,
+      disable: true,
     };
   }
 
   componentDidMount() {
+    const { history } = this.props;
+    console.log("Header -> componentDidMount -> history", history)
+    if(history.location.pathname === '/chat') {
+      this.setState({disable: false})
+    }
     window.onscroll = () => {
       if(window.pageYOffset > 150) { 
         this.setState({ sticky: true })
@@ -62,13 +68,13 @@ class Header extends PureComponent {
 	};
 
   render() {
-    const { sticky, dropdown } = this.state;
+    const { sticky, dropdown, disable } = this.state;
     const { currentUser } = this.props;
 
     return (
       <React.Fragment>
         <header className="HomePage__Header">
-          <div className={`Header__content ${ sticky ? 'content--sticky':'' }`} >
+          <div className={`Header__content ${ (sticky && disable) ? 'content--sticky': 'content--background' }`} >
             {/* Logo */}
             <img className="Header__Logo" src={process.env.PUBLIC_URL + "/png/Logo-1.png"} alt="Logo" onClick={this.ImageClick}></img>
             {/* Link */}
@@ -102,7 +108,7 @@ class Header extends PureComponent {
             }
         
             {dropdown ? ( <HeaderDropDownItem handleCloseDropdown={this.handleCloseDropdown} handleLogoutEvent={this.handleLogoutEvent}/>): (<React.Fragment />)}
-          </div>
+          </div>          
         </header>
       </React.Fragment>
     )

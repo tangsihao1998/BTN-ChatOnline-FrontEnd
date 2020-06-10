@@ -29,7 +29,6 @@ class InboxPeople extends Component {
     };
     
     chooseRoom = (roomId) => {
-        alert(`on ChooseRoom: ${roomId}`);
         this.props.setRoomId(roomId);
     }
 
@@ -40,11 +39,14 @@ class InboxPeople extends Component {
                 <div className="Container__Title"></div>
                 <div className="List__Room">
                     {
-                        rooms.forEach((room) => {
+                        rooms.map((room, i) => {
+                            const newestMessage = room.messages[0] ? room.messages[0].content : null;
+                            const dateTime = room.messages[0] ? room.messages[0].updatedAt : null;
                             return <ChatRoom
+                                key={room._id}
                                 name={room.name}
-                                date={room.messages[0].updatedAt}
-                                newestMessage={room.messages[0].content}
+                                dateTime={dateTime}
+                                newestMessage={newestMessage}
                                 onClick={() => this.chooseRoom(room._id)}
                             />
                         })

@@ -29,11 +29,12 @@ const CustomModal = (props) => {
     handleClose, 
     roomName,
     SubmitRoomName,
-    name, 
+    email, 
     handleTextChange, 
     SubmitSearch, 
     userFound, 
-    AddFriendToRoom 
+    AddFriendToRoom,
+    listUserAdd, 
   } = props;
 
   return (
@@ -76,11 +77,11 @@ const CustomModal = (props) => {
             <div className='Search__form'>
               <input 
                 className='Input__style' 
-                type="text" 
-                placeholder="Enter friend name..." 
-                name='name'
+                type="email" 
+                placeholder="Enter your friend email..." 
+                name='email'
                 onChange={handleTextChange} 
-                value={name}
+                value={email}
                 required
               />
               <IconButton
@@ -97,7 +98,11 @@ const CustomModal = (props) => {
             {/* Show thông tin search được */}
             <div className='ShowInfo__search'>
               <img className="User__Image" src={process.env.PUBLIC_URL + '/images/user.png'} alt="User" />
-              <div className='User__name'>{userFound}</div>
+              <div className='User__name'>
+                {/* Cần xem userFound là gì để render */}
+                {/* {userFound} */}
+                ABC
+              </div>
               <IconButton
                 edge="start"
                 className="User__add"
@@ -109,9 +114,9 @@ const CustomModal = (props) => {
               </IconButton>
             </div>
 
-            {/* Ở đây cho chạy user.map() để render ra các user có trong room*/}
+            {/* Ở đây cho chạy listUserAdd.map() để render ra các user có trong room*/}
 
-            {/* {userFound && (
+            {/* {listUserAdd && (
               
             )} */}
           </div>
@@ -127,8 +132,9 @@ class AddGroupModal extends Component {
     super(props);
     this.state = {
       roomName: '',
-      name: '',
+      email: '',
       userFound: '',
+      listUserAdd: '',
     }
   }
 
@@ -140,19 +146,28 @@ class AddGroupModal extends Component {
   SubmitRoomName = (e) => {
     e.preventDefault();
     // Hành động submit tên Room
+    // tên Room
+    const { roomName } = this.state;
 
   }
 
   SubmitSearch = (e) => {
     // Thực hiện hành động Search
     e.preventDefault();
+    // Search = email
+    const { email } = this.state;
+
     // Gọi xuống db check xem có người dùng đó ko rồi trả về setState cho user để hiển thị
-    // setState tên cho userFound
-    // Lúc này user là một mảng 
+    // Lấy object user tìm được và setState userFound
+
   }
 
   AddFriendToRoom = (e) => {
     // Thực hiện hành động add friend
+    const { userFound } = this.state;
+    // sau khi gọi back-end và add bạn vào room thì front-end sẽ push user được add vào biến state listUserAdd để render
+    // listUserAdd là Array[Object]
+
   }
   
   render() {
@@ -164,11 +179,12 @@ class AddGroupModal extends Component {
           handleClose={handleClose}
           roomName={this.state.roomName}
           SubmitRoomName={this.SubmitRoomName}
-          name={this.state.name}
+          email={this.state.email}
           handleTextChange={this.handleTextChange}
           SubmitSearch={this.SubmitSearch}
           userFound={this.state.userFound}
           AddFriendToRoom={this.AddFriendToRoom}
+          listUserAdd={this.state.listUserAdd}
         />
       </React.Fragment>
     )

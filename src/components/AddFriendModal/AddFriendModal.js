@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
 
 const CustomModal = (props) => {
   const classes = useStyles();
-  const { open, handleClose, name, handleTextChange, SubmitSearch, userFound, AddFriend } = props;
+  const { open, handleClose, email, handleTextChange, SubmitSearch, userFound, AddFriend } = props;
   return (
     <React.Fragment>
       <Modal
@@ -48,11 +48,11 @@ const CustomModal = (props) => {
             <div className='Search__form'>
               <input 
                 className='Input__style' 
-                type="text" 
-                placeholder="Enter friend name..." 
-                name='name'
+                type="email" 
+                placeholder="Enter your friend email..." 
+                name='email'
                 onChange={handleTextChange} 
-                value={name}
+                value={email}
                 required
               />
               <IconButton
@@ -68,7 +68,11 @@ const CustomModal = (props) => {
             {/* Show thông tin search được */}
             <div className='ShowInfo__search'>
               <img className="User__Image" src={process.env.PUBLIC_URL + '/images/user.png'} alt="User" />
-              <div className='User__name'>{userFound}</div>
+              <div className='User__name'>
+                {/* Cần xem userFound là gì để render */}
+                {/* {userFound} */}
+                ABC
+              </div>
               <IconButton
                 edge="start"
                 className="User__add"
@@ -95,7 +99,7 @@ class AddFriendModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: '',
+      email: '',
       userFound: '',
     }
   }
@@ -108,12 +112,17 @@ class AddFriendModal extends Component {
   SubmitSearch = (e) => {
     // Thực hiện hành động Search
     e.preventDefault();
+    const { email } = this.state;
     // Gọi xuống db check xem có người dùng đó ko rồi trả về setState cho user để hiển thị
-    // setState tên cho userFound
+    // Lấy object user tìm được và setState userFound
   }
 
   AddFriend = (e) => {
-    // Thực hiện hành động add friend
+    e.preventDefault();
+    const { userFound } = this.state;
+    // Thực hiện hành động add friend và end
+    // userFound sẽ thay đổi khi người dùng search người khác
+
   }
   
   render() {
@@ -123,7 +132,7 @@ class AddFriendModal extends Component {
         <CustomModal 
           open={open}
           handleClose={handleClose}
-          name={this.state.name}
+          email={this.state.email}
           handleTextChange={this.handleTextChange}
           SubmitSearch={this.SubmitSearch}
           userFound={this.state.userFound}

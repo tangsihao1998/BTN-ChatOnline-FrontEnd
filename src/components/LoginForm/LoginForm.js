@@ -9,6 +9,8 @@ import {client} from '../../feathers';
 import { connect } from 'react-redux';
 import actions from './../../redux/actions';
 
+import { services } from './../../feathers'; 
+
 class LoginForm extends Component {
   constructor(props) {
     super(props);
@@ -29,12 +31,16 @@ class LoginForm extends Component {
 		e.preventDefault();
 		const { setCurrentUser, history } = this.props;
 		try {
-			const result = await client.authenticate({
-				strategy: 'local',
-				email: this.state.email,
-				password: this.state.password,
-			});
-      setCurrentUser(result.user);
+      const {email, password} = this.state 
+      const strategy = 'local'; 
+			// const result = await client.authenticate({ 
+			// 	strategy: 'local', 
+			// 	email: this.state.email, 
+			// 	password: this.state.password, 
+      // }); 
+      await this.props.onLogin(strategy,email,password); 
+       
+      // setCurrentUser(result.user); 
       history.push('/chat');
 		} catch (err) {
 			if (err.code === 401) {
@@ -101,6 +107,13 @@ class LoginForm extends Component {
 const mapDispatchToProps = dispatch => ({
   dispatch,
   setCurrentUser: currentUser => dispatch(actions.setCurrentUser(currentUser)),
+  onLogin: async (strategy, email, password) => { 
+    await dispatch(services.authentication.create({ 
+      strategy, 
+      email, 
+      password, 
+    })) 
+  } 
 });
 
 export default connect(null, mapDispatchToProps)(LoginForm);

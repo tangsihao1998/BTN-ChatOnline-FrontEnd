@@ -3,20 +3,38 @@ import React, { Component } from 'react'
 import './EachMessage.scss';
 
 class EachMessage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      type: true,
-    }
-  }
-
   render() {
     // Ở đây gọi props để check xem là incoming or outgoing, example với this.state.type
-    const {type} = this.state;
+    const { isOutgoing, message} = this.props;
+
+    const dateObject = new Date(message.updatedAt);
+
+    const time = dateObject.toLocaleTimeString([], {
+      hour: '2-digit',
+      minute: '2-digit',
+    });
+
+    const date = dateObject.toLocaleDateString(undefined, {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
 
     return (
       <React.Fragment>
-        { type ? 
+        { isOutgoing ?
+          (
+            // {/* Message của mình */}
+            <div className="Outgoing__message">
+              <div className="Message__send">
+                {/* Gọi message thay thế trong p */}
+                <p>{message.content}</p>
+                  {/* Date and time */}
+                <span className="Time__date"> {time}    |    {date}</span>
+              </div>
+            </div>
+          ):
           (
             //  {/* Message của người khác */}
             <div className="Incoming__message">
@@ -24,23 +42,10 @@ class EachMessage extends Component {
               <div className="Message__incoming">
                   <div className="Message">
                       {/* Gọi message thay thế trong p */}
-                      <p>{}Test which is a new approach to have all
-                          solutions</p>
+                      <p>{message.content}</p>
                           {/* Date and time */}
-                      <span className="Time__date"> {} 11:01 AM    |    {}June 9</span>
+                      <span className="Time__date"> {time}    |    {date}</span>
                   </div>
-              </div>
-            </div>
-          ):
-          (
-            // {/* Message của mình */}
-            <div className="Outgoing__message">
-              <div className="Message__send">
-                {/* Gọi message thay thế trong p */}
-                <p>{}Test which is a new approach to have all
-                solutions</p>
-                  {/* Date and time */}
-                <span className="Time__date"> {}11:01 AM    |    {}June 9</span> 
               </div>
             </div>
           )

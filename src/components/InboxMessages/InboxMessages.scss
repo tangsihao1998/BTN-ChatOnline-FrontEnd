@@ -1,9 +1,9 @@
 
-.Inbox_Container {
+.Inbox__Container {
     display: flex;
     flex-direction: column;
     height: 100%;
-    #rowHeader {
+    .Inbox__name {
         border-bottom: solid;
         border-width: 1px;
         border-color: #c4c4c4;
@@ -12,16 +12,12 @@
         max-height: 100px;
         height: 15%;
         margin: 0;
+        padding-top: 20px;
+        padding-left: 10px;
     }
     
-    .Container_Inbox_Chat_Settings {
+    .Container__InboxAndSettings {
         display: flex;
-        .Inbox_Chat {
-            border-right: solid;
-            border-width: 1px;
-            border-color: #c4c4c4;
-            padding: 20px;
-            width: 75%;
-        }
+        padding: 10px;
     }
 }

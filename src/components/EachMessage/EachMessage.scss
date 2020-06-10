@@ -1,0 +1,60 @@
+.Incoming__message {
+  display: flex;
+  .User__Image {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+  }
+  .Message__incoming {
+    display: inline-block;
+    padding: 0 0 0 10px;
+    vertical-align: top;
+    width: 50%;
+    .Message {
+      width: 90%;
+      p {
+        background: #ebebeb none repeat scroll 0 0;
+        border-radius: 3px;
+        color: #646464;
+        font-size: 14px;
+        margin: 0;
+        padding: 5px 10px 5px 12px;
+        width: 100%;
+      }
+      .Time__date {
+        color: #747474;
+        display: block;
+        font-size: 12px;
+        margin: 8px 0 0;
+      }
+    }
+  }
+
+}
+
+.Outgoing__message {
+  overflow: hidden;
+  margin: 26px 0 26px;
+  padding-right: 10px;
+  .Message__send {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    width: 100%;
+    p {
+      background: #05728f none repeat scroll 0 0;
+      border-radius: 3px;
+      font-size: 14px;
+      margin: 0; color:#fff;
+      padding: 5px 10px 5px 12px;
+      width: 50%;
+    }
+
+    .Time__date {
+      color: #747474;
+      display: block;
+      font-size: 12px;
+      margin: 8px 0 0;
+    }
+  }
+}

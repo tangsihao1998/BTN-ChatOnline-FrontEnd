@@ -9,7 +9,7 @@ import './Messaging.scss'
 class Messaging extends Component {
     render() {
         return (
-            <div className="Messaging" style={{maxWidth: '100%', height: '100%'}}>
+            <div className="Messaging">
                 <SelectedOptions />
                 <InboxMessaging />
             </div>

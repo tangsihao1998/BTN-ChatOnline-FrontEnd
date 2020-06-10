@@ -2,17 +2,16 @@
 .Message__container {
     display: flex;
     height: 100%;
+    width: 100%;
     .List__People {
-        border-style: solid;
-        border-width: 1px;
-        border-color: #c4c4c4;
         width: 25%;
+
+        border: 1px solid #c4c4c4;
     }
     .Container__Messages {
-        border-top: solid;
-        border-width: 1px;
-        border-color: hsl(0, 0%, 77%);
-        padding: 0;
         width: 75%;
+
+        border: 1px solid hsl(0, 0%, 77%);
+        border-left: unset;
     }
 }

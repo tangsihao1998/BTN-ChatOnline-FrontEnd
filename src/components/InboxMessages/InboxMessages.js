@@ -4,17 +4,21 @@ import React, { Component } from 'react'
 // import Col from 'react-bootstrap/Col'
 import InboxChat from '../InboxChat/InboxChat'
 import InboxSettings from '../InboxSettings/InboxSettings'
-import './InboxMessges.scss'
+import './InboxMessages.scss'
 
 class InboxMessages extends Component {
     render() {
         return (
-            <div className="Inbox_Container" style={{maxWidth: '100%'}}>
-                <div id="rowHeader">Name : </div>
-                <div className="Container_Inbox_Chat_Settings" style={{height:'100%'}}>
-                    <div className="Inbox_Chat">
-                        <InboxChat></InboxChat>                     
-                    </div>
+            <div className="Inbox__Container" style={{maxWidth: '100%'}}>
+                {/* Get Current Room Name */}
+                <div className="Inbox__name">Name: {}</div>
+
+                {/* Khung Chat + Khung Settings */}
+                <div className="Container__InboxAndSettings" style={{height:'100%'}}>
+                    {/* Khung Chat */}
+                    <InboxChat />                   
+
+                    {/* Khung Settings */}
                     <div className="Inbox_Settings">
                         <InboxSettings></InboxSettings>
                     </div>

@@ -20,12 +20,13 @@ class InboxPeople extends Component {
         };
     }
 
-    async componentDidMount() {
-        const roomTypeFilter = this.props.roomTypeFilter;
-        await this.props.getRooms(roomTypeFilter);
-        this.setState({
-            rooms: this.props.currentRoomsQuery,
-        });
+    async componentWillReceiveProps(nextProps) {
+        if (this.props.roomTypeFilter !== nextProps.roomTypeFilter) {
+            await this.props.getRooms(nextProps.roomTypeFilter);
+            this.setState({
+                rooms: this.props.currentRoomsQuery,
+            });
+        }
     };
     
     chooseRoom = (roomId) => {

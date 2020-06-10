@@ -1,3 +1,11 @@
+@import './../../constant/responsive.scss';
+
 .AuthenticationContainer {
-  height: 100%;
+  // height: 100%;
+
+  height: 900px;
+  @media #{$tablet_device}{
+    max-width: 720px;
+    height: 820px;
+  }
 }

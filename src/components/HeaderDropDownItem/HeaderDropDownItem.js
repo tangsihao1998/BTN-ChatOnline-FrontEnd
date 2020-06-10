@@ -20,12 +20,11 @@ const HeaderDropDownItem = (props) => {
           </React.Fragment>
         )
       }
-     
       <Link className="Submenu__Link" to='/' onClick={handleCloseDropdown}>Trang Chủ</Link>
-      <Link className="Submenu__Link" to='/about' onClick={handleCloseDropdown}>Về Chúng Tôi</Link>
       <Link className="Submenu__Link" to='/contact' onClick={handleCloseDropdown}>Liên Hệ</Link>
       { token ? (
         <React.Fragment>
+          <Link className="Submenu__Link" to='/chat' onClick={handleCloseDropdown}>Chat</Link>
           <Link className="Submenu__Link" to='/profile' onClick={handleCloseDropdown}>Thông Tin Tài Khoản</Link>
           <div className="Submenu__Link" onClick={handleLogoutEvent}>
             Đăng Xuất

@@ -40,6 +40,15 @@ class Header extends PureComponent {
     }
   }
 
+  componentDidUpdate(prevProps) {
+    const { history } = this.props;
+    if(history.location.pathname === '/chat') {
+      this.setState({ disable: false })
+    } else {
+      this.setState({ disable: true })
+    }
+  }
+
   ImageClick = (e) => {
     this.props.history.push('/');
   }
@@ -66,10 +75,21 @@ class Header extends PureComponent {
 		this.props.history.push('/');
 	};
 
+  redirectToChatBox = (e) => {
+    this.props.history.push('/chat');
+  }
+
+  redirectToHomePage = (e) => {
+    this.props.history.push('/');
+  }
+
+  redirectToContact = (e) => {
+    this.props.history.push('/contact');
+  }
+
   render() {
     const { sticky, dropdown, disable } = this.state;
     const { currentUser } = this.props;
-
     return (
       <React.Fragment>
         <header id={`${ (disable) ? '': 'unset__position' }`} className='HomePage__Header' >
@@ -78,9 +98,9 @@ class Header extends PureComponent {
             <img className="Header__Logo" src={process.env.PUBLIC_URL + "/png/Logo-1.png"} alt="Logo" onClick={this.ImageClick}></img>
             {/* Link */}
             <div className="Header__navigation">
-              <Link className="Header__link" to='/'>Trang Chủ</Link>
-              <Link className="Header__link" to='/contact'>Liên Hệ</Link>
-              {currentUser && <Link className="Header__link" to='/chat'>Chat</Link>}
+              <Link className="Header__link" to='/' onClick={this.redirectToHomePage}>Trang Chủ</Link>
+              <Link className="Header__link" to='/contact' onClick={this.redirectToContact}>Liên Hệ</Link>
+              {currentUser && <Link className="Header__link" to='/chat' onClick={this.redirectToChatBox}>Chat</Link>}
             </div>
 
             {/* check IF Đăng Nhập or not */}

@@ -34,7 +34,9 @@ class InboxChat extends Component {
             const { message } = this.state;
 
             const { roomId } = this.props;
-            await this.props.createMessage(message, 'text', roomId)
+            if(message!=null) {
+                await this.props.createMessage(message, 'text', roomId)
+            }
             // Submit Message Here
         } catch (error) {
             console.log("InboxChat -> handleSubmitMessage -> error", error)

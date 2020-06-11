@@ -124,8 +124,6 @@ const CustomModal = (props) => {
             }
           
 
-            {/* Ở đây cho chạy listUserAdd.map() để render ra các user có trong room*/}
-
             {/* {listUserAdd && (
               
             )} */}

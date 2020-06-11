@@ -13,6 +13,7 @@ import Introduction from '../../components/Introduction';
 import AuthenticationContainer from './../../components/AuthenticationContainer';
 import Contact from '../../components/Contact';
 import Messaging from '../../components/Messaging';
+import VerifyAccount from './../../components/VerifyAccount';
 
 class HomePage extends PureComponent {
 	render() {
@@ -29,6 +30,8 @@ class HomePage extends PureComponent {
 							<Route exact path="/profile" component={Profile} />
 							<Route exact path="/contact" component={Contact}/>
 							{token ? (<Route exact path="/chat" component={Messaging} />):(<Redirect to='/authentication/signin'/>)}
+							<Route exact path="/resendVerifySignup" component={VerifyAccount}/>
+							{/* <Route exact path="/" component={Messaging} /> */}
 						</div>
 					</Switch>
 					{/* FOOTER */}

@@ -66,30 +66,29 @@ const CustomModal = (props) => {
 								</IconButton>
 							</div>
 							{/* Show thông tin search được */}
-							<div className="ShowInfo__search">
-								<img
-									className="User__Image"
-									src={process.env.PUBLIC_URL + '/images/user.png'}
-									alt="User"
-								/>
-								<div className="User__name">
-									{/* Cần xem userFound là gì để render */}
-									{/* {userFound} */}
-									ABC
-								</div>
-								<IconButton
-									edge="start"
-									className="User__add"
-									color="primary"
-									aria-label="Add user"
-									onClick={AddFriend}
-								>
-									<Add />
-								</IconButton>
-							</div>
-							{/* {userFound && (
-
-            )} */}
+							{
+								usersFound.map(user => (
+									<div className="ShowInfo__search">
+										<img
+											className="User__Image"
+											src={process.env.PUBLIC_URL + '/images/user.png'}
+											alt="User"
+										/>
+										<div className="User__name">
+											{user.name}
+										</div>
+										<IconButton
+											edge="start"
+											className="User__add"
+											color="primary"
+											aria-label="Add user"
+											onClick={AddFriend}
+										>
+											<Add />
+										</IconButton>
+									</div>
+								))
+							}
 						</div>
 					</div>
 				</Fade>
@@ -120,6 +119,7 @@ class AddFriendModal extends Component {
 		// Gọi xuống db check xem có người dùng đó ko rồi trả về setState cho user để hiển thị
 		// Lấy object user tìm được và setState userFound
     const users = await this.props.findUsers(email);
+    console.log("AddFriendModal -> SubmitSearch -> users", users)
 		this.setState({
 			usersFound: this.props.currentUsersQuery,
 		});

@@ -85,7 +85,7 @@ const mapDispatchToProps = (dispatch) => ({
   onCreate: async (email) => {
     await dispatch(services.authManagement.create({
       action: 'sendResetPwd',
-      value: email,
+      value: {email: email},
     }));
   }
 });

@@ -32,7 +32,8 @@ class InboxPeople extends Component {
 		const roomService = client.service('rooms');
 		roomService.on('created', (room, context) => {
             this.props.onCreateRoom(room);
-			// Push new room to state
+            // Push new room to state
+            this.state.rooms.push(room)
 		});
 		roomService.on('patched', (room, context) => {
             this.props.onPatchRoom(room);

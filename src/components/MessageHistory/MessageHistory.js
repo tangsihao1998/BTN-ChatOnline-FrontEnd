@@ -13,7 +13,7 @@ class MessageHistory extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-      roomId: null,
+      		roomId: null,
 			messages: [],
 			// Define mức scroll point để làm lazy load
 			// scrollPoint: 800,
@@ -26,6 +26,7 @@ class MessageHistory extends Component {
 		messageService.on('created', (message, context) => {
 			this.props.onCreateMessage(message);
 			// Push new message to state
+			this.state.messages.push(message)
 		});
 		messageService.on('patched', (message, context) => {
 			this.props.onPatchMessage(message);

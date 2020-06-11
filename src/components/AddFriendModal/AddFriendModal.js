@@ -78,13 +78,14 @@ const CustomModal = (props) => {
 											{user.name}
 										</div>
 										<IconButton
+											id={user._id}
 											edge="start"
 											className="User__add"
 											color="primary"
 											aria-label="Add user"
 											onClick={AddFriend}
 										>
-											<Add />
+											<Add id={user._id}/>
 										</IconButton>
 									</div>
 								))
@@ -119,15 +120,14 @@ class AddFriendModal extends Component {
 		// Gọi xuống db check xem có người dùng đó ko rồi trả về setState cho user để hiển thị
 		// Lấy object user tìm được và setState userFound
     const users = await this.props.findUsers(email);
-    console.log("AddFriendModal -> SubmitSearch -> users", users)
 		this.setState({
 			usersFound: this.props.currentUsersQuery,
 		});
 	};
 
 	AddFriend = async (e) => {
-		e.preventDefault();
-		const { userIdToAdd } = this.state; // Get userIdToAdd from list of usersFound
+		// e.preventDefault();
+		const userIdToAdd = e.target.id; // Get userIdToAdd from list of usersFound
 		// Thực hiện hành động add friend và end
 		// userFound sẽ thay đổi khi người dùng search người khác
 		const currentUserId = this.props.currentUser._id;

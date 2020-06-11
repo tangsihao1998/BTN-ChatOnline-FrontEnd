@@ -10,7 +10,7 @@ export default function(services) {
 	return combineReducers({
 		auth: authReducer(initialState.auth),
 		chat: chatReducer(initialState.chat),
-		user: services.users.reducer,
+		users: services.users.reducer,
 		messages: services.messages.reducer,
 		rooms: services.rooms.reducer,
 		authentication: services.authentication.reducer,

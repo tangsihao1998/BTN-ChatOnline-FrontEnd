@@ -30,16 +30,20 @@ class InboxPeople extends Component {
     async componentDidMount() {
         // Set up event listeners
 		const roomService = client.service('rooms');
-		roomService.on('created', (message, context) => {
+		roomService.on('created', (room, context) => {
+            this.props.store.dispatch(services.rooms.onCreated(room));
 			// Push new room to state
 		});
-		roomService.on('patched', (message, context) => {
+		roomService.on('patched', (room, context) => {
+            this.props.store.dispatch(services.rooms.onPatched(room));
 			// Update room
 		});
-		roomService.on('updated', (message, context) => {
+		roomService.on('updated', (room, context) => {
+            this.props.store.dispatch(services.rooms.onUpdated(room));
 			// Update room
 		});
-		roomService.on('deleted', (message, context) => {
+		roomService.on('removed', (room, context) => {
+            this.props.store.dispatch(services.rooms.onRemoved(room));
 			// Delete room
 		});
     }

@@ -24,15 +24,19 @@ class MessageHistory extends Component {
 		// Set up event listeners
 		const messageService = client.service('messages');
 		messageService.on('created', (message, context) => {
+			this.props.store.dispatch(services.messages.onCreated(message));
 			// Push new message to state
 		});
 		messageService.on('patched', (message, context) => {
+			this.props.store.dispatch(services.messages.onPatched(message));
 			// Update message
 		});
 		messageService.on('updated', (message, context) => {
+			this.props.store.dispatch(services.messages.onUpdated(message));
 			// Update message
 		});
-		messageService.on('deleted', (message, context) => {
+		messageService.on('removed', (message, context) => {
+			this.props.store.dispatch(services.messages.onRemoved(message));
 			// Delete message
 		});
 

@@ -29,12 +29,16 @@ class InboxChat extends Component {
     
     handleSubmitMessage = async (e) => {
         e.preventDefault();
-        const { message } = this.state;
-
-        const { roomId } = this.props;
-        await this.props.createMessage(message, 'text', roomId)
-        // Submit Message Here
         this.setState({ message: ''});
+        try {
+            const { message } = this.state;
+
+            const { roomId } = this.props;
+            await this.props.createMessage(message, 'text', roomId)
+            // Submit Message Here
+        } catch (error) {
+            console.log("InboxChat -> handleSubmitMessage -> error", error)
+        }
     }
 
     render() {

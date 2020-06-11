@@ -126,24 +126,28 @@ class AddFriendModal extends Component {
 	};
 
 	AddFriend = async (e) => {
-		// e.preventDefault();
-		const userIdToAdd = e.target.id; // Get userIdToAdd from list of usersFound
-		// Thực hiện hành động add friend và end
-		// userFound sẽ thay đổi khi người dùng search người khác
-		const currentUserId = this.props.currentUser._id;
-		// Tạo friend cho cả 2 users
-		await this.props.addToFriendlist(currentUserId, userIdToAdd);
-		await this.props.addToFriendlist(userIdToAdd, currentUserId);
-		
-		// Tạo roomId mới
-		const name = 'newRoom';
-		const type = 'direct';
+		try {
+			// e.preventDefault();
+			const userIdToAdd = e.target.id; // Get userIdToAdd from list of usersFound
+			// Thực hiện hành động add friend và end
+			// userFound sẽ thay đổi khi người dùng search người khác
+			const currentUserId = this.props.currentUser._id;
+			// Tạo friend cho cả 2 users
+			await this.props.addToFriendlist(currentUserId, userIdToAdd);
+			await this.props.addToFriendlist(userIdToAdd, currentUserId);
+			
+			// Tạo roomId mới
+			const name = 'newRoom';
+			const type = 'direct';
 
-		await this.props.createANewRoom(name, type);
+			await this.props.createANewRoom(name, type);
 
-		const {roomData} = this.props;
-		// add thêm users vào room
-		await this.props.addToRoom(roomData._id, userIdToAdd);
+			const {roomData} = this.props;
+			// add thêm users vào room
+			await this.props.addToRoom(roomData._id, userIdToAdd);
+		} catch (error) {
+      console.log("AddFriendModal -> AddFriend -> error", error)
+		}
 	};
 
 	render() {

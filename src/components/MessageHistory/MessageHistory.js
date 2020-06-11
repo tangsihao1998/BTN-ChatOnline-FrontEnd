@@ -4,7 +4,7 @@ import './MessageHistory.scss';
 
 // import feathers redux
 import { connect } from 'react-redux';
-import { services } from '../../feathers';
+import { client, services } from '../../feathers';
 import selectors from '../../redux/selectors';
 
 import EachMessage from './../EachMessage';
@@ -21,6 +21,26 @@ class MessageHistory extends Component {
 	}
 
 	async componentDidMount() {
+		// Set up event listeners
+		const messageService = client.service('messages');
+		messageService.on('created', (message, context) => {
+			// Push new message to state
+		});
+		messageService.on('patched', (message, context) => {
+			// Update message
+		});
+		messageService.on('updated', (message, context) => {
+			// Update message
+		});
+		messageService.on('deleted', (message, context) => {
+			// Delete message
+		});
+
+		// messageService.on('created', (data) => {
+		// 	alert(`onCreate::data: ${data}`);
+		// 	this.props.store.dispatch(services.messages.onCreated(data));
+		// });
+
 		// window.onscroll = () => {
 		// const {scrollPoint} = this.state;
     //   if(window.pageYOffset > scrollPoint ) {
@@ -35,7 +55,6 @@ class MessageHistory extends Component {
 	}
 
 	async componentWillReceiveProps(nextProps) {
-    console.log(`${this.props.roomId}::${nextProps.roomId}`);
     if (this.props.roomId !== nextProps.roomId) { // On roomId change
       await this.props.getMessages(nextProps.roomId)
       this.setState({
@@ -87,5 +106,7 @@ const mapDispatchToProps = (dispatch) => ({
 		);
 	},
 });
+
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(MessageHistory);

@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import './InboxPeople.scss'
 
 import { connect } from 'react-redux';
-import { services } from './../../feathers';
+import { client, services } from './../../feathers';
 
 import selectors from './../../redux/selectors';
 import actions from './../../redux/actions';
@@ -25,6 +25,23 @@ class InboxPeople extends Component {
             addFriendModal: false,
             addGroupModal: false,
         };
+    }
+
+    async componentDidMount() {
+        // Set up event listeners
+		const roomService = client.service('rooms');
+		roomService.on('created', (message, context) => {
+			// Push new room to state
+		});
+		roomService.on('patched', (message, context) => {
+			// Update room
+		});
+		roomService.on('updated', (message, context) => {
+			// Update room
+		});
+		roomService.on('deleted', (message, context) => {
+			// Delete room
+		});
     }
 
     async componentWillReceiveProps(nextProps) {

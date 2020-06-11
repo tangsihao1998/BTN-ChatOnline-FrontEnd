@@ -6,6 +6,12 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Modal, Fade, IconButton } from '@material-ui/core';
 import { Search, Add, Send } from '@material-ui/icons';
 
+import { connect } from 'react-redux';
+import { services } from './../../feathers';
+
+import selectors from './../../redux/selectors';
+import actions from './../../redux/actions';
+
 import './AddGroupModal.scss';
 
 const useStyles = makeStyles((theme) => ({
@@ -133,7 +139,7 @@ class AddGroupModal extends Component {
     this.state = {
       roomName: '',
       email: '',
-      userFound: '',
+      usersFound: [],
       listUserAdd: '',
     }
   }
@@ -151,23 +157,25 @@ class AddGroupModal extends Component {
 
   }
 
-  SubmitSearch = (e) => {
+  SubmitSearch = async (e) => {
     // Thực hiện hành động Search
-    e.preventDefault();
-    // Search = email
+		e.preventDefault();
     const { email } = this.state;
-
-    // Gọi xuống db check xem có người dùng đó ko rồi trả về setState cho user để hiển thị
-    // Lấy object user tìm được và setState userFound
-
+		// Gọi xuống db check xem có người dùng đó ko rồi trả về setState cho user để hiển thị
+		// Lấy object user tìm được và setState userFound
+    const users = await this.props.findUsers(email);
+		this.setState({
+			usersFound: this.props.currentUsersQuery,
+		});
   }
 
-  AddFriendToRoom = (e) => {
+  AddFriendToRoom = async (e) => {
     // Thực hiện hành động add friend
-    const { userFound } = this.state;
+    const { userIdToAdd } = this.state; // Get userIdToAdd from list of usersFound
+    const { roomId } = this.props;
     // sau khi gọi back-end và add bạn vào room thì front-end sẽ push user được add vào biến state listUserAdd để render
     // listUserAdd là Array[Object]
-
+    await this.props.addToRoom(roomId, userIdToAdd);
   }
   
   render() {
@@ -191,4 +199,34 @@ class AddGroupModal extends Component {
   }
 }
 
-export default AddGroupModal;
+const mapStateToProps = (state) => ({
+	state,
+	currentUser: selectors.getCurrentUser(state),
+  currentRoomsQuery: selectors.getCurrentRoomsQuery(state),
+  currentUsersQuery: selectors.getCurrentUsersQuery(state),
+  roomTypeFilter: selectors.getRoomTypeFilter(state),
+  roomId: selectors.getRoomId(state),
+});
+
+const mapDispatchToProps = (dispatch) => ({
+	dispatch,
+	findUsers: async (email) => {
+		const options = {
+			query: {
+				$or: [ { email: { $search: email } }, { name: { $search: email } } ],
+			},
+		};
+		await dispatch(services.users.find(options));
+	},
+	addToRoom: async (roomId, userId) => {
+		await dispatch(
+			services.rooms.patch(roomId, {
+				$addToSet: {
+					members: userId,
+				},
+			})
+		);
+	},
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddGroupModal);

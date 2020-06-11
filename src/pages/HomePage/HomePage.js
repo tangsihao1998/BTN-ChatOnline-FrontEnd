@@ -13,6 +13,7 @@ import Introduction from '../../components/Introduction';
 import AuthenticationContainer from './../../components/AuthenticationContainer';
 import Contact from '../../components/Contact';
 import Messaging from '../../components/Messaging';
+import VerifyAccount from './../../components/VerifyAccount';
 
 class HomePage extends PureComponent {
 	render() {
@@ -25,10 +26,12 @@ class HomePage extends PureComponent {
 					<Switch>
 						<div className='App__background'>
 							<Route exact path="/" component={Introduction}/>
+							<Route exact path="/verifySignup" component={VerifyAccount}/>
 							<Route path="/authentication" component={AuthenticationContainer} />
 							<Route exact path="/profile" component={Profile} />
 							<Route exact path="/contact" component={Contact}/>
 							{token ? (<Route exact path="/chat" component={Messaging} />):(<Redirect to='/authentication/signin'/>)}
+							{/* <Route exact path="/" component={Messaging} /> */}
 						</div>
 					</Switch>
 					{/* FOOTER */}

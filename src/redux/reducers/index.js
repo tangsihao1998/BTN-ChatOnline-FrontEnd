@@ -14,5 +14,6 @@ export default function(services) {
 		messages: services.messages.reducer,
 		rooms: services.rooms.reducer,
 		authentication: services.authentication.reducer,
+		authManagement: services.authManagement.reducer,
 	});
 }

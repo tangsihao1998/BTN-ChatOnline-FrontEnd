@@ -25,7 +25,7 @@ class VerifyAccount extends Component {
       await this.props.onCreate(action, token);
       alert('Verify Success');
     } catch (error) {
-      switch(err.code) {
+      switch(error.code) {
         case 400: {
           alert ('Actions does not exist')
           break;

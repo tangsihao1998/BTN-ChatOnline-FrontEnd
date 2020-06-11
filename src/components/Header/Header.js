@@ -11,7 +11,7 @@ import { connect } from 'react-redux';
 import selectors from './../../redux/selectors';
 import actions from './../../redux/actions';
 
-import client from './../../feathers';
+import {client} from './../../feathers';
 // import components
 import Login from './../Login';
 import HeaderDropDownItem from './../HeaderDropDownItem';
@@ -22,16 +22,30 @@ class Header extends PureComponent {
     this.state = {
       sticky: false,
       dropdown: false,
+      disable: true,
     };
   }
 
   componentDidMount() {
+    const { history } = this.props;
+    if(history.location.pathname === '/chat') {
+      this.setState({ disable: false })
+    }
     window.onscroll = () => {
       if(window.pageYOffset > 150) { 
         this.setState({ sticky: true })
       } else {
         this.setState({ sticky: false })
       }
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    const { history } = this.props;
+    if(history.location.pathname === '/chat') {
+      this.setState({ disable: false })
+    } else {
+      this.setState({ disable: true })
     }
   }
 
@@ -61,20 +75,32 @@ class Header extends PureComponent {
 		this.props.history.push('/');
 	};
 
+  redirectToChatBox = (e) => {
+    this.props.history.push('/chat');
+  }
+
+  redirectToHomePage = (e) => {
+    this.props.history.push('/');
+  }
+
+  redirectToContact = (e) => {
+    this.props.history.push('/contact');
+  }
+
   render() {
-    const { sticky, dropdown } = this.state;
+    const { sticky, dropdown, disable } = this.state;
     const { currentUser } = this.props;
     return (
       <React.Fragment>
-        <header className="HomePage__Header">
-          <div className={`Header__content ${ sticky ? 'content--sticky':'' }`} >
+        <header id={`${ (disable) ? '': 'unset__position' }`} className='HomePage__Header' >
+          <div className={`Header__content ${sticky ? 'content--sticky': '' } ${disable ? '': 'content--background'}`} >
             {/* Logo */}
             <img className="Header__Logo" src={process.env.PUBLIC_URL + "/png/Logo-1.png"} alt="Logo" onClick={this.ImageClick}></img>
             {/* Link */}
             <div className="Header__navigation">
-              <Link className="Header__link" to='/'>Trang Chủ</Link>
-              <Link className="Header__link" to='/about'>Về Chúng Tôi</Link>
-              <Link className="Header__link" to='/contact'>Liên Hệ</Link>
+              <Link className="Header__link" to='/' onClick={this.redirectToHomePage}>Trang Chủ</Link>
+              <Link className="Header__link" to='/contact' onClick={this.redirectToContact}>Liên Hệ</Link>
+              {currentUser && <Link className="Header__link" to='/chat' onClick={this.redirectToChatBox}>Chat</Link>}
             </div>
 
             {/* check IF Đăng Nhập or not */}
@@ -101,7 +127,7 @@ class Header extends PureComponent {
             }
         
             {dropdown ? ( <HeaderDropDownItem handleCloseDropdown={this.handleCloseDropdown} handleLogoutEvent={this.handleLogoutEvent}/>): (<React.Fragment />)}
-          </div>
+          </div>          
         </header>
       </React.Fragment>
     )
@@ -109,6 +135,7 @@ class Header extends PureComponent {
 }
 
 const mapStateToProps = (state) => ({
+  state,
 	currentUser: selectors.getCurrentUser(state),
 });
 

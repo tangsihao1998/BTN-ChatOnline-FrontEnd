@@ -1,9 +1,15 @@
+@import './../../constant/responsive.scss';
+
 .Messaging {
     display: flex;
-    height: 100%;
+    align-items: center;
     flex-direction: column;
-    .Messaging__Select {
-        
+    height: 100%;
+    background-color: white;
+    @media #{$large_device}{
+        height: 950px;
     }
-    
+    @media #{$mid_device}{
+        height: 950px;
+    }
 }

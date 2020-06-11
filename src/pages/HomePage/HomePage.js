@@ -3,19 +3,20 @@ import React, { PureComponent } from 'react';
 import './HomePage.scss';
 
 // // import Router
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 
 // import components
-// import Messaging from '../../components/Messaging';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import Profile from '../../components/Profile';
 import Introduction from '../../components/Introduction';
 import AuthenticationContainer from './../../components/AuthenticationContainer';
 import Contact from '../../components/Contact';
+import Messaging from '../../components/Messaging';
 
 class HomePage extends PureComponent {
 	render() {
+		const token = localStorage.getItem('feathers-jwt');
 		return (
 			<Router>
 				<div className="HomePage">
@@ -27,8 +28,7 @@ class HomePage extends PureComponent {
 							<Route path="/authentication" component={AuthenticationContainer} />
 							<Route exact path="/profile" component={Profile} />
 							<Route exact path="/contact" component={Contact}/>
-
-							{/* <Route exact path="/" component={Messaging} /> */}
+							{token ? (<Route exact path="/chat" component={Messaging} />):(<Redirect to='/authentication/signin'/>)}
 						</div>
 					</Switch>
 					{/* FOOTER */}

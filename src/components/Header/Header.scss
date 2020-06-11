@@ -1,5 +1,9 @@
 @import './../../constant/responsive.scss';
 
+#unset__position {
+  position: unset;
+}
+
 .HomePage__Header {
   left: 0;
   right: 0;
@@ -11,7 +15,7 @@
   .content--sticky {
     position: fixed;
     width: 100%;
-    top: -70px;
+    top: -75px;
     left: 0;
     right: 0;
     z-index: 990;
@@ -22,6 +26,11 @@
     background: #000;
   }
 
+  .content--background {
+    position: unset;
+    background:  #000;
+  }
+  
   .Header__content {
     display: flex;
     justify-content: space-between;

@@ -1,0 +1,17 @@
+
+.Message__container {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    .List__People {
+        width: 25%;
+
+        border: 1px solid #c4c4c4;
+    }
+    .Container__Messages {
+        width: 75%;
+
+        border: 1px solid hsl(0, 0%, 77%);
+        border-left: unset;
+    }
+}

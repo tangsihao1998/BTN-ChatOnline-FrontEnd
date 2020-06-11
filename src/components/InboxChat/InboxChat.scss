@@ -1,0 +1,45 @@
+
+  .Inbox__Chat {
+    height: 100%;
+    width: 75%;
+
+    border-right: solid;
+    border-width: 1px;
+    border-color: #c4c4c4;
+    padding: 5px;
+
+    overflow: hidden;
+    .Inbox_Input {
+      height: 10%;
+      border-top: 1px solid #c4c4c4;
+      .Input__form {
+        display: flex;
+        padding-top: 10px;
+        .Form__input {
+          background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+          border: medium none;
+          color: #4c4c4c;
+          font-size: 12px;
+          overflow: auto;
+          min-height: 30px;
+          width: 100%;
+          padding: 0px 10px 10px;
+          outline: none;
+        }
+      }   
+    }
+  }
+
+  .msg_send_btn {
+    background: #05728f none repeat scroll 0 0;
+    border: medium none;
+    border-radius: 50%;
+    color: #fff;
+    cursor: pointer;
+    font-size: 17px;
+    height: 33px;
+    position: absolute;
+    right: 0;
+    top: 11px;
+    width: 33px;
+  }

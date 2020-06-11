@@ -14,7 +14,7 @@ import selectors from './redux/selectors';
 
 // import components
 import HomePage from './pages/HomePage';
-import client from './feathers';
+import {client} from './feathers';
 
 // Scroll To Top Component
 class ScrollToTop extends React.Component {
@@ -38,7 +38,6 @@ class App extends Component {
 			login: null,
 		};
   }
-
 
 	async componentDidMount() {
 		// Try to authenticate with the JWT stored in localStorage
@@ -69,6 +68,7 @@ class App extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
+	dispatch,
 	setCurrentUser: (currentUser) => dispatch(actions.setCurrentUser(currentUser)),
 	setError: (error) => dispatch(actions.setError(error)),
 });

@@ -12,13 +12,6 @@ export default initialState => (state = initialState, action) => {
 			return {
 				currentUser: null,
 			};
-		case 'SET_ERRORS':
-			return {
-				...state,
-				error: {
-					...payload.error,
-				},
-			};
 		default:
 			return state;
 	}

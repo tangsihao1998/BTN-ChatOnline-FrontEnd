@@ -1,0 +1,38 @@
+.List__Container {
+  display: flex;
+  flex-direction: column;
+
+  .Container__Title {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    box-sizing: border-box;
+    height: 15%;
+    min-height: 100px;
+    max-height: 100px;
+    height: 100px;
+    padding-right: 10px;
+    border-bottom: solid;
+    border-width: 1px;
+    border-color:#c4c4c4;
+    .Icon__add {
+      background-color: black;
+      color: white;
+      margin-left: 10px;
+      padding: 8px;
+    }
+  }
+  .List__Room {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.Modal__addFriend {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  height: 50%;
+  background: white;
+}

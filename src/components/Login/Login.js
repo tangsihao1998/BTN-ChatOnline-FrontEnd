@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import actions from './../../redux/actions';
 import selectors from './../../redux/selectors';
 
-import client from '../../feathers';
+import { client } from '../../feathers';
 
 import { Link } from 'react-router-dom';
 

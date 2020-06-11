@@ -24,19 +24,19 @@ class MessageHistory extends Component {
 		// Set up event listeners
 		const messageService = client.service('messages');
 		messageService.on('created', (message, context) => {
-			this.props.store.dispatch(services.messages.onCreated(message));
+			this.props.onCreateMessage(message);
 			// Push new message to state
 		});
 		messageService.on('patched', (message, context) => {
-			this.props.store.dispatch(services.messages.onPatched(message));
+			this.props.onPatchMessage(message);
 			// Update message
 		});
 		messageService.on('updated', (message, context) => {
-			this.props.store.dispatch(services.messages.onUpdated(message));
+			this.props.onUpdateMessage(message);
 			// Update message
 		});
 		messageService.on('removed', (message, context) => {
-			this.props.store.dispatch(services.messages.onRemoved(message));
+			this.props.onRemoveMessage(message);
 			// Delete message
 		});
 
@@ -109,6 +109,10 @@ const mapDispatchToProps = (dispatch) => ({
 			})
 		);
 	},
+	onCreateMessage: (message) => dispatch(services.messages.onCreated(message)),
+	onUpdateMessage: (message) => dispatch(services.messages.onUpdated(message)),
+	onPatchMessage: (message) => dispatch(services.messages.onPatched(message)),
+	onRemoveMessage: (message) => dispatch(services.messages.onRemoved(message)),
 });
 
 

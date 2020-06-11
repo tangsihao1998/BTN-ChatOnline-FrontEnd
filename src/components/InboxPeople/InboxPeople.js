@@ -31,19 +31,19 @@ class InboxPeople extends Component {
         // Set up event listeners
 		const roomService = client.service('rooms');
 		roomService.on('created', (room, context) => {
-            this.props.store.dispatch(services.rooms.onCreated(room));
+            this.props.onCreateRoom(room);
 			// Push new room to state
 		});
 		roomService.on('patched', (room, context) => {
-            this.props.store.dispatch(services.rooms.onPatched(room));
+            this.props.onPatchRoom(room);
 			// Update room
 		});
 		roomService.on('updated', (room, context) => {
-            this.props.store.dispatch(services.rooms.onUpdated(room));
+            this.props.onUpdateRoom(room);
 			// Update room
 		});
 		roomService.on('removed', (room, context) => {
-            this.props.store.dispatch(services.rooms.onRemoved(room));
+            this.props.onRemoveRoom(room);
 			// Delete room
 		});
     }
@@ -156,7 +156,11 @@ const mapDispatchToProps = (dispatch) => ({
             type: typeFilter,
         };
         await dispatch(services.rooms.find(options));
-    }
+    },
+    onCreateRoom: (room) => dispatch(services.rooms.onCreated(room)),
+    onUpdateRoom: (room) => dispatch(services.rooms.onUpdated(room)),
+    onPatchRoom: (room) => dispatch(services.rooms.onPatched(room)),
+    onRemoveRoom: (room) => dispatch(services.rooms.onRemoved(room)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(InboxPeople);

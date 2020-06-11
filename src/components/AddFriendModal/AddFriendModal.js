@@ -135,10 +135,15 @@ class AddFriendModal extends Component {
 		await this.props.addToFriendlist(currentUserId, userIdToAdd);
 		await this.props.addToFriendlist(userIdToAdd, currentUserId);
 		
-		const { roomId } = this.props;
-    console.log("AddFriendModal -> AddFriend -> roomId", roomId)
-		// Tạo room cho cả 2 users
-		await this.props.addToRoom(roomId, userIdToAdd);
+		// Tạo roomId mới
+		const name = 'newRoom';
+		const type = 'direct';
+
+		await this.props.createANewRoom(name, type);
+
+		const {roomData} = this.props;
+		// add thêm users vào room
+		await this.props.addToRoom(roomData._id, userIdToAdd);
 	};
 
 	render() {
@@ -166,6 +171,7 @@ const mapStateToProps = (state) => ({
   currentUsersQuery: selectors.getCurrentUsersQuery(state),
 	roomTypeFilter: selectors.getRoomTypeFilter(state),
 	roomId: selectors.getRoomId(state),
+	roomData: selectors.getRoomData(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -194,6 +200,11 @@ const mapDispatchToProps = (dispatch) => ({
 					members: userId,
 				},
 			})
+		);
+	},
+	createANewRoom: async (name, type) => {
+		await dispatch(
+			services.rooms.create({name: name, type: type, members: [], messages: []})
 		);
 	},
 });

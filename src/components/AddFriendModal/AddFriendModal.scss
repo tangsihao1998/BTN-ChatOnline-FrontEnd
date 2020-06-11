@@ -4,8 +4,18 @@
   }
   .Search__form {
     display: flex;
-    .Input__style {
+    justify-content: space-between;
 
+    width: 300px;
+    border: 1px solid #000;
+    border-radius: 10px;
+
+    margin-bottom: 20px;
+    .Input__style {
+      width: 260px;
+      outline: none;
+      border: none;
+      margin-left: 10px;
     }
     .Icon__search {
       
@@ -13,12 +23,19 @@
   }
   .ShowInfo__search {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 0.5px solid #000;
+    border-radius: 5px;
+
+    padding: 0px 10px;
+    margin-bottom: 20px;
     .User__Image {
       width: 30px;
       height: 30px;
     }
     .User__name {
-      
+      font-size: 14px;
     }
     .User__add {
 

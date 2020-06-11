@@ -66,30 +66,30 @@ const CustomModal = (props) => {
 								</IconButton>
 							</div>
 							{/* Show thông tin search được */}
-							<div className="ShowInfo__search">
-								<img
-									className="User__Image"
-									src={process.env.PUBLIC_URL + '/images/user.png'}
-									alt="User"
-								/>
-								<div className="User__name">
-									{/* Cần xem userFound là gì để render */}
-									{/* {userFound} */}
-									ABC
-								</div>
-								<IconButton
-									edge="start"
-									className="User__add"
-									color="primary"
-									aria-label="Add user"
-									onClick={AddFriend}
-								>
-									<Add />
-								</IconButton>
-							</div>
-							{/* {userFound && (
-
-            )} */}
+							{
+								usersFound.map(user => (
+									<div className="ShowInfo__search">
+										<img
+											className="User__Image"
+											src={process.env.PUBLIC_URL + '/images/user.png'}
+											alt="User"
+										/>
+										<div className="User__name">
+											{user.name}
+										</div>
+										<IconButton
+											id={user._id}
+											edge="start"
+											className="User__add"
+											color="primary"
+											aria-label="Add user"
+											onClick={AddFriend}
+										>
+											<Add id={user._id}/>
+										</IconButton>
+									</div>
+								))
+							}
 						</div>
 					</div>
 				</Fade>
@@ -126,12 +126,24 @@ class AddFriendModal extends Component {
 	};
 
 	AddFriend = async (e) => {
-		e.preventDefault();
-		const { userIdToAdd } = this.state; // Get userIdToAdd from list of usersFound
+		// e.preventDefault();
+		const userIdToAdd = e.target.id; // Get userIdToAdd from list of usersFound
 		// Thực hiện hành động add friend và end
 		// userFound sẽ thay đổi khi người dùng search người khác
 		const currentUserId = this.props.currentUser._id;
+		// Tạo friend cho cả 2 users
 		await this.props.addToFriendlist(currentUserId, userIdToAdd);
+		await this.props.addToFriendlist(userIdToAdd, currentUserId);
+		
+		// Tạo roomId mới
+		const name = 'newRoom';
+		const type = 'direct';
+
+		await this.props.createANewRoom(name, type);
+
+		const {roomData} = this.props;
+		// add thêm users vào room
+		await this.props.addToRoom(roomData._id, userIdToAdd);
 	};
 
 	render() {
@@ -158,6 +170,8 @@ const mapStateToProps = (state) => ({
   currentRoomsQuery: selectors.getCurrentRoomsQuery(state),
   currentUsersQuery: selectors.getCurrentUsersQuery(state),
 	roomTypeFilter: selectors.getRoomTypeFilter(state),
+	roomId: selectors.getRoomId(state),
+	roomData: selectors.getRoomData(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -177,6 +191,20 @@ const mapDispatchToProps = (dispatch) => ({
 					friends: friendUserId,
 				},
 			})
+		);
+	},
+	addToRoom: async (roomId, userId) => {
+		await dispatch(
+			services.rooms.patch(roomId, {
+				$addToSet: {
+					members: userId,
+				},
+			})
+		);
+	},
+	createANewRoom: async (name, type) => {
+		await dispatch(
+			services.rooms.create({name: name, type: type, members: [], messages: []})
 		);
 	},
 });

@@ -16,3 +16,4 @@ export const getCurrentUsersQuery = (state) => {
     }
 export const getRoomTypeFilter = (state) => state.chat.roomTypeFilter;
 export const getRoomId = (state) => state.chat.roomId;
+export const getRoomData = (state) => state.rooms.data;

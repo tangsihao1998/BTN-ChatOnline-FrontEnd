@@ -12,4 +12,8 @@
     @media #{$mid_device}{
         height: 950px;
     }
+    @media #{$FHD_screen}{
+        height: 820px;
+    }
+    
 }

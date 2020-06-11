@@ -38,7 +38,7 @@ const CustomModal = (props) => {
     email, 
     handleTextChange, 
     SubmitSearch, 
-    userFound, 
+    usersFound, 
     AddFriendToRoom,
     listUserAdd, 
   } = props;
@@ -100,27 +100,29 @@ const CustomModal = (props) => {
                 <Search />
               </IconButton>
             </div>
-
+            
             {/* Show thông tin search được */}
-            <div className='ShowInfo__search'>
-              <img className="User__Image" src={process.env.PUBLIC_URL + '/images/user.png'} alt="User" />
-              <div className='User__name'>
-                {/* Cần xem userFound là gì để render */}
-                {/* {userFound} */}
-                ABC
-              </div>
-              <IconButton
-                edge="start"
-                className="User__add"
-                color="primary"
-                aria-label="Add user"
-                onClick={AddFriendToRoom}
-              >
-                <Add />
-              </IconButton>
-            </div>
-
-            {/* Ở đây cho chạy listUserAdd.map() để render ra các user có trong room*/}
+            {
+              usersFound.map(user => (
+                <div className='ShowInfo__search'>
+                  <img className="User__Image" src={process.env.PUBLIC_URL + '/images/user.png'} alt="User" />
+                  <div className='User__name'>
+                    {user.name}
+                  </div>
+                  <IconButton
+                    edge="start"
+                    className="User__add"
+                    color="primary"
+                    aria-label="Add user"
+                    onClick={AddFriendToRoom}
+                    id={user._id}
+                  >
+                    <Add id={user._id}/>
+                  </IconButton>
+                </div>
+              ))
+            }
+          
 
             {/* {listUserAdd && (
               
@@ -154,7 +156,7 @@ class AddGroupModal extends Component {
     // Hành động submit tên Room
     // tên Room
     const { roomName } = this.state;
-
+    
   }
 
   SubmitSearch = async (e) => {
@@ -171,7 +173,8 @@ class AddGroupModal extends Component {
 
   AddFriendToRoom = async (e) => {
     // Thực hiện hành động add friend
-    const { userIdToAdd } = this.state; // Get userIdToAdd from list of usersFound
+    const userIdToAdd = e.target.id;// Get userIdToAdd from list of usersFound
+    console.log("AddGroupModal -> AddFriendToRoom -> userIdToAdd", userIdToAdd)
     const { roomId } = this.props;
     // sau khi gọi back-end và add bạn vào room thì front-end sẽ push user được add vào biến state listUserAdd để render
     // listUserAdd là Array[Object]
@@ -190,7 +193,7 @@ class AddGroupModal extends Component {
           email={this.state.email}
           handleTextChange={this.handleTextChange}
           SubmitSearch={this.SubmitSearch}
-          userFound={this.state.userFound}
+          usersFound={this.state.usersFound}
           AddFriendToRoom={this.AddFriendToRoom}
           listUserAdd={this.state.listUserAdd}
         />

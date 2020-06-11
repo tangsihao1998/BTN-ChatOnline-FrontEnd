@@ -4,6 +4,9 @@ import './ForgotPasswordForm.scss';
 
 import { Link } from 'react-router-dom'; 
 
+import { connect } from 'react-redux';
+import { services } from './../../feathers';
+
 class ForgotPasswordForm extends Component {
   constructor (props) {
     super(props);
@@ -19,9 +22,24 @@ class ForgotPasswordForm extends Component {
   };
   
   handleForgotSubmit = async (e) => {
-
+    e.preventDefault();
+    const { email } = this.state;
+    try {
+      await this.props.onCreate(email);
+      alert ('Send Email Success');
+    } catch (error) {
+      switch(error.code) {
+        case 400: {
+          alert ('Actions does not exist')
+          break;
+        };
+        default: {
+          alert ('An unknown error has occured')
+          break;
+        };
+      }
+    }
   }
-
 
   render() {
     const { email } = this.state;
@@ -62,4 +80,14 @@ class ForgotPasswordForm extends Component {
   }
 }
 
-export default ForgotPasswordForm;
+const mapDispatchToProps = (dispatch) => ({
+  dispatch,
+  onCreate: async (email) => {
+    await dispatch(services.authManagement.create({
+      action: 'sendResetPwd',
+      value: {email: email},
+    }));
+  }
+});
+
+export default connect(null, mapDispatchToProps)(ForgotPasswordForm);

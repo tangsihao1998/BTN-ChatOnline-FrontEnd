@@ -9,6 +9,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import LoginForm from './../LoginForm';
 import RegisterForm from './../RegisterForm';
 import ForgotPasswordForm from './../ForgotPasswordForm';
+import ResetPasswordForm from './../ResetPasswordForm';
 
 class AuthenticationContainer extends Component {
 
@@ -23,6 +24,7 @@ class AuthenticationContainer extends Component {
     return (
       <div className="AuthenticationContainer">
         <Switch>
+          <Route exact path='/authentication/resetPwdLong' component={ResetPasswordForm} />
           <Route exact path='/authentication/signin' component={LoginForm} />
           <Route exact path='/authentication/register' component={RegisterForm} />
           <Route exact path='/authentication/forgotpassword' component={ForgotPasswordForm} />

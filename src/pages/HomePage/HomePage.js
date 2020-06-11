@@ -26,12 +26,12 @@ class HomePage extends PureComponent {
 					<Switch>
 						<div className='App__background'>
 							<Route exact path="/" component={Introduction}/>
-							<Route exact path="/verifySignup" component={VerifyAccount}/>
 							<Route path="/authentication" component={AuthenticationContainer} />
+							<Route exact path="/verifySignupLong" component={VerifyAccount}/>
 							<Route exact path="/profile" component={Profile} />
 							<Route exact path="/contact" component={Contact}/>
-							{token ? (<Route exact path="/chat" component={Messaging} />):(<Redirect to='/authentication/signin'/>)}
-							{/* <Route exact path="/" component={Messaging} /> */}
+							<Route exact path="/chat" component={Messaging} />
+							{/* {token ? ():(<Redirect to='/authentication/signin'/>)} */}
 						</div>
 					</Switch>
 					{/* FOOTER */}

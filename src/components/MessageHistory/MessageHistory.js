@@ -4,7 +4,7 @@ import './MessageHistory.scss';
 
 // import feathers redux
 import { connect } from 'react-redux';
-import { services } from '../../feathers';
+import { client, services } from '../../feathers';
 import selectors from '../../redux/selectors';
 
 import EachMessage from './../EachMessage';
@@ -13,7 +13,7 @@ class MessageHistory extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-      roomId: null,
+      		roomId: null,
 			messages: [],
 			// Define mức scroll point để làm lazy load
 			// scrollPoint: 800,
@@ -21,6 +21,31 @@ class MessageHistory extends Component {
 	}
 
 	async componentDidMount() {
+		// Set up event listeners
+		const messageService = client.service('messages');
+		messageService.on('created', (message, context) => {
+			this.props.onCreateMessage(message);
+			// Push new message to state
+			this.state.messages.push(message)
+		});
+		messageService.on('patched', (message, context) => {
+			this.props.onPatchMessage(message);
+			// Update message
+		});
+		messageService.on('updated', (message, context) => {
+			this.props.onUpdateMessage(message);
+			// Update message
+		});
+		messageService.on('removed', (message, context) => {
+			this.props.onRemoveMessage(message);
+			// Delete message
+		});
+
+		// messageService.on('created', (data) => {
+		// 	alert(`onCreate::data: ${data}`);
+		// 	this.props.store.dispatch(services.messages.onCreated(data));
+		// });
+
 		// window.onscroll = () => {
 		// const {scrollPoint} = this.state;
     //   if(window.pageYOffset > scrollPoint ) {
@@ -35,7 +60,6 @@ class MessageHistory extends Component {
 	}
 
 	async componentWillReceiveProps(nextProps) {
-    console.log(`${this.props.roomId}::${nextProps.roomId}`);
     if (this.props.roomId !== nextProps.roomId) { // On roomId change
       await this.props.getMessages(nextProps.roomId)
       this.setState({
@@ -86,6 +110,12 @@ const mapDispatchToProps = (dispatch) => ({
 			})
 		);
 	},
+	onCreateMessage: (message) => dispatch(services.messages.onCreated(message)),
+	onUpdateMessage: (message) => dispatch(services.messages.onUpdated(message)),
+	onPatchMessage: (message) => dispatch(services.messages.onPatched(message)),
+	onRemoveMessage: (message) => dispatch(services.messages.onRemoved(message)),
 });
+
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(MessageHistory);

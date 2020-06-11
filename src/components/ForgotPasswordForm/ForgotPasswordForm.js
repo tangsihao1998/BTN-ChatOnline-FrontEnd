@@ -25,8 +25,7 @@ class ForgotPasswordForm extends Component {
     e.preventDefault();
     const { email } = this.state;
     try {
-      const action = 'sendResetPwd';
-      await this.props.onCreate(action, email);
+      await this.props.onCreate(email);
       alert ('Send Email Success');
     } catch (error) {
       switch(error.code) {
@@ -83,9 +82,9 @@ class ForgotPasswordForm extends Component {
 
 const mapDispatchToProps = (dispatch) => ({
   dispatch,
-  onCreate: async (action, email) => {
+  onCreate: async (email) => {
     await dispatch(services.authManagement.create({
-      action,
+      action: 'sendResetPwd',
       value: email,
     }));
   }
